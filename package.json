@@ -1,0 +1,16 @@
+{
+  "name": "mydevworld",
+  "version": "1.0.0",
+  "description": "Building my Software Developer Portfolio.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-public:jfoskin/myportfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
