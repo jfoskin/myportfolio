@@ -11,6 +11,14 @@ app.get('/', (req,res,next)=> {
     res.send('Hello World!')
 })
 
+app.get('/about', (req,res) => {
+    try {
+        res.send('about me here')
+    } catch (error) {
+        res.error(error)
+    }
+})
+
 // Ports
 const PORT = 3000
 
