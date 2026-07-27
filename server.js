@@ -2,6 +2,7 @@
 require('dotenv').config()
 const express = require('express');
 const path = require('path');
+cost cors = require('cors');
 const app = express();
 const PORT = process.env.PORT
 let previousPage = "None"
@@ -15,9 +16,11 @@ const projectRoutes = require('./src/routes/projectRoutes');
 
 //MIDDLEWARE
 //this runs in between requests and responses
-
-// app.use(express.json())
-// app.use(express.static(path.join(__dirname,'public')));
+app.use(cors({
+    origin: process.env.CORS_ORIGIN
+}))
+app.use(express.json())
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
     console.log(`hey there the middle ware is running`)

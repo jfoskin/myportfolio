@@ -16,6 +16,7 @@
     "url": "git@github.com-public:jfoskin/myportfolio.git"
   },
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mongodb": "^7.3.0",
