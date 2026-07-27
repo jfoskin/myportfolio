@@ -10,8 +10,8 @@ let previousPage = "None"
 const projects = ['isitsafeforme', 'hope',]
 
 
-const adminRoutes = require('./routes/adminRoutes');
-const projectRoutes = require('./routes/projectRoutes');
+const adminRoutes = require('./src/routes/admin/index');
+const projectRoutes = require('./src/routes/projectRoutes');
 
 //MIDDLEWARE
 //this runs in between requests and responses

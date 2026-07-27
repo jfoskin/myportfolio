@@ -2,7 +2,7 @@ const express = require('express')
 
 const adminRoutes = express.Router()
 
-adminRoutes.get('/admin', (req, res) => {
+adminRoutes.get('/', (req, res) => {
     res.send('Admin Dashboard')
 })
 
