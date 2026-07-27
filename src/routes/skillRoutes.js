@@ -1,13 +1,14 @@
 const express = require('express')
+const Skill = require('../models/SkillModel')
 
 const skillRoutes = express.Router()
 
 const Skill = require('../models/SkillModel')
 
-skillRoutes.get('/skills', (req, res) => {
+skillRoutes.get('/', async (req, res) => {
     try {
-
-
+        const allSkills = await Skill.find({})
+        res.status(200).json(allSkills)
         console.log(`skills`)
     } catch (error) {
         console.log(`Error while trying to get all skills`, error)
@@ -17,3 +18,5 @@ skillRoutes.get('/skills', (req, res) => {
         })
     }
 })
+
+module.exports = skillRoutes

@@ -1,13 +1,13 @@
 const express = require('express')
-
+const Project = require('../models/ProjectModel')
 const projectRoutes = express.Router()
 
 projectRoutes.get('/', (req, res) => {
 
     try {
-        // const projects = await
+        // const projects = await Project.find({})
 
-        res.send(`all projects returned!`)
+        res.status(200).send(`all projects returned!`)
     } catch (error) {
         console.log(`Error while trying to get all projects`, error)
         res.status(400).json({
@@ -17,7 +17,7 @@ projectRoutes.get('/', (req, res) => {
     }
 })
 
-// projectRoutes.delete('/admin/projects/:id', (req,res)=>{
+// projectRoutes.delete('/mgmt/projects/:id', (req,res)=>{
 
 // })
 
