@@ -13,7 +13,7 @@ const projects = ['isitsafeforme', 'hope',]
 
 const adminRoutes = require('./src/routes/admin/index');
 const projectRoutes = require('./src/routes/projectRoutes');
-
+const skillRoutes = require('./src/routes/skillRoutes');
 //MIDDLEWARE
 //this runs in between requests and responses
 app.use(cors({
@@ -41,6 +41,7 @@ app.use('/login', (req, res, next) => {
 
 app.use('/mgmt', adminRoutes)
 app.use('/projects', projectRoutes)
+app.use('/skills', skillRoutes)
 
 
 // Routes - INDUCES [Indexes,New, Delete, Update, Create,Edit,Show]
@@ -56,15 +57,8 @@ app.get('/about', (req, res) => {
     res.send('Hello World!')
 });
 
-app.get('/skills', (req, res) => {
-    res.send(`Software engineering skills: JavaScript, TypeScript, React, Html`)
-})
 
 // Example URL: /search?q=javascript&sort=popular
-app.get('/projects', (req, res) => {
-    // res.send('Hello there!')
-    console.log(req.query)
-});
 
 app.get('/search', (req, res) => {
     let category = req.query.cat || 'nothing'
@@ -73,27 +67,6 @@ app.get('/search', (req, res) => {
     res.send(` this is the cat ${category} and the size ${size} `)
 })
 
-
-
-// app.get('/about', (req,res) => {
-//     try {
-//         res.sendFile(__dirname, 'public','about.html')
-//     } catch (error) {
-//         res.send(error)
-//     }
-// });
-
-app.get("/projects/:id", (req, res) => {
-    let id = req.params.id
-    res.send(projects[id])
-});
-
-app.post('/api/users', (req, res) => {
-    const newUsers = req.body
-    console.log(`this is the new user ${newUsers}`)
-
-    res.status(201).send(`created new users ${newUsers.name}`)
-})
 
 // Ports
 

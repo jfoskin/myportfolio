@@ -17,4 +17,13 @@ projectRoutes.get('/', async (req, res) => {
     }
 })
 
+projectRoutes.get('/:id'), async (req, res) => {
+    try {
+        const foundProject = Project.findById(req.params.id)
+        res.status(200).json(foundProject)
+    } catch (error) {
+        res.status(404).json({ message: 'Project not found' })
+    }
+}
+
 module.exports = projectRoutes
