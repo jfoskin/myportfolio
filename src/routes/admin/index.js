@@ -14,8 +14,14 @@ adminRoutes.put('/projects/:id', async (req, res) => {
 
 // Edit
 adminRoutes.get('/projects/:id/edit', async (req, res) => {
-    const id = req.params.id
 
+    const editProject = await Project.findById(req.params.id)
+    console.log(`edit this project ${editProject}`)
 
+})
+
+adminRoutes.delete('/mgmt/projects/:id', async (req, res) => {
+    const deletedProject = await Project.findByIdAndDelete(req.params.id).exec()
+    res.status(200).json({ message: 'Project deleted successfully' })
 })
 module.exports = adminRoutes

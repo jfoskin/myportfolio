@@ -1,11 +1,11 @@
 const express = require('express')
-const Project = require('../models/ProjectModel')
 const projectRoutes = express.Router()
+const Project = require('../models/ProjectModel')
 
-projectRoutes.get('/', (req, res) => {
+projectRoutes.get('/', async (req, res) => {
 
     try {
-        // const projects = await Project.find({})
+        const projects = await Project.find({})
 
         res.status(200).send(`all projects returned!`)
     } catch (error) {
@@ -16,11 +16,5 @@ projectRoutes.get('/', (req, res) => {
         })
     }
 })
-
-
-
-// projectRoutes.delete('/mgmt/projects/:id', (req,res)=>{
-
-// })
 
 module.exports = projectRoutes
