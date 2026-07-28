@@ -1,11 +1,10 @@
 const express = require('express')
 const Skill = require('../models/SkillModel')
 
-const skillRoutes = express.Router()
+const skillRouter = express.Router()
 
-const Skill = require('../models/SkillModel')
 
-skillRoutes.get('/', async (req, res) => {
+skillRouter.get('/', async (req, res) => {
     try {
         const allSkills = await Skill.find({})
         res.status(200).json(allSkills)
@@ -19,4 +18,6 @@ skillRoutes.get('/', async (req, res) => {
     }
 })
 
-module.exports = skillRoutes
+
+
+module.exports = skillRouter

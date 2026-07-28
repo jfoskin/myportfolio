@@ -12,8 +12,8 @@ const projects = ['isitsafeforme', 'hope',]
 
 
 const adminRoutes = require('./src/routes/admin');
-const projectRoutes = require('./src/routes/projectRoutes');
-const skillRoutes = require('./src/routes/skillRoutes');
+const projectRouter = require('./src/routes/projectRoutes');
+const skillRouter = require('./src/routes/skillRoutes');
 //MIDDLEWARE
 //this runs in between requests and responses
 app.use(cors({
@@ -31,17 +31,9 @@ app.use((req, res, next) => {
     next()
 });
 
-app.use('/login', (req, res, next) => {
-    if (req.headers.x_api_key === 'supersecretkey') {
-        next()
-    } else {
-        res.status(401).json({ error: 'Unauthorized: API Key required' })
-    }
-})
-
 app.use('/mgmt', adminRoutes)
-app.use('/projects', projectRoutes)
-app.use('/skills', skillRoutes)
+app.use('/projects', projectRouter)
+app.use('/skills', skillRouter)
 
 
 // Routes - INDUCES [Indexes,New, Delete, Update, Create,Edit,Show]
@@ -49,9 +41,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
-app.get('/login', (req, res) => {
-    console.log(`you did a great job testing with postman`)
-})
 
 app.get('/about', (req, res) => {
     res.send('Hello World!')
