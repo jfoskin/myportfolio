@@ -8,6 +8,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node src/utils/seedSkills.js",
     "start": "node server.js",
     "build": "npm i && node server.js"
   },

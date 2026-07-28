@@ -31,9 +31,9 @@ app.use((req, res, next) => {
     next()
 });
 
-app.use('/mgmt', adminRoutes)
 app.use('/projects', projectRouter)
 app.use('/skills', skillRouter)
+app.use('/mgmt', adminRoutes)
 
 
 // Routes - INDUCES [Indexes,New, Delete, Update, Create,Edit,Show]
