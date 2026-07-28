@@ -11,7 +11,7 @@ let previousPage = "None"
 const projects = ['isitsafeforme', 'hope',]
 
 
-const adminRoutes = require('./src/routes/admin/index');
+const adminRoutes = require('./src/routes/admin');
 const projectRoutes = require('./src/routes/projectRoutes');
 const skillRoutes = require('./src/routes/skillRoutes');
 //MIDDLEWARE
