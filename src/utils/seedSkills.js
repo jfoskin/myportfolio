@@ -24,6 +24,15 @@ const skills = [
 
 ]
 
+const projects = [
+    {
+        title: '',
+        github: '',
+        description: '',
+        url: ''
+    }
+]
+
 async function seed() {
     await mongoose.connect(process.env.DATABASEURL)
     await Skill.deleteMany({})
