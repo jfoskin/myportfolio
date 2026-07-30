@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import Skills from "./components/Skills"
 import Footer from "./components/Footer"
 import NavBar from "./components/NavBar"
+import About from "./components/About"
+import Contact from "./components/Contact"
 import "./App.css"
 
 
@@ -37,12 +39,14 @@ const getSkills = async () => {
 
   return (
     <div className="app">
-      
-     
+    
 
       <header >
         <NavBar/>
       </header>
+
+    
+      <About/>
 
       <section className="panel skills-section">
         <h2>Skills</h2>
@@ -54,6 +58,8 @@ const getSkills = async () => {
           ))}
         </div>
       </section>
+          
+      <Contact/>
       <Footer />
     </div>
   )
