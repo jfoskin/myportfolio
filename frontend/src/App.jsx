@@ -3,18 +3,32 @@ import Skills from "./components/Skills"
 import Footer from "./components/Footer"
 import NavBar from "./components/NavBar"
 import About from "./components/About"
-import Contact from "./components/Contact"
+import Contact from "./components/Contact" 
+import Projects from "./components/Projects"
 import "./App.css"
 
 
 function App() {
 
 const [skills,setSkills] = useState([])
+const [projects,setProjects] = useState([])
 const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
 
 useEffect(() => {
 const getSkills = async () => {
+    const getProjects = async () => {
+      try {
+        const projectsResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/projects`)
+        if (!projectsResponse.ok) throw new Error(`Failed to fetch projects: ${projectsResponse.status} ${projectsResponse.statusText}`)
+        const projectsData = await projectsResponse.json()
+        setProjects(projectsData)
+      } catch (error) {
+        console.log(`Error while trying to get projects`, error)
+        setError(error.message)
+      }
+    }
+    getProjects()
 
     try {
 
@@ -47,6 +61,16 @@ const getSkills = async () => {
 
     
       <About/>
+      {/* <Projects projects={projects} />*/}
+
+      <section className="panel projects-section">
+  <h2>Projects</h2>
+  <div className="projects-grid">
+    {projects.map(project => (
+      <Projects key={project._id} project={project} />
+    ))}
+  </div>
+</section>
 
       <section className="panel skills-section">
         <h2>Skills</h2>

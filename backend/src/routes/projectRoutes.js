@@ -7,7 +7,7 @@ projectRouter.get('/', async (req, res) => {
     try {
         const projects = await Project.find({})
 
-        res.status(200).send(`all projects returned!`)
+        res.status(200).json(projects)
     } catch (error) {
         console.log(`Error while trying to get all projects`, error)
         res.status(400).json({
@@ -19,7 +19,7 @@ projectRouter.get('/', async (req, res) => {
 
 projectRouter.get('/:id', async (req, res) => {
     try {
-        const foundProject = Project.findById(req.params.id)
+        const foundProject = await Project.findById(req.params.id)
         res.status(200).json(foundProject)
     } catch (error) {
         res.status(404).json({ message: 'Project not found' })
