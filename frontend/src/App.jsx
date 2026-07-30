@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react"
 import Skills from "./components/Skills"
+import "./App.css"
 
 
 function App() {
 
 const [skills,setSkills] = useState([])
-const [loading, setLoading] = useState(false)
+const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
 
 useEffect(() => {
@@ -20,25 +21,39 @@ const getSkills = async () => {
       const skillsData = await skillsResponse.json()
 
       setSkills(skillsData)
+      setLoading(false)
 
     }catch (error) {
       console.log(`Error while trying to get skills`, error)
+      setError(error.message)
     }
  
   }
     getSkills()
+
 },[])
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error}</p>
-
   return (
-    <>
-      <h1>Hello World</h1>
-      {skills.map(skill => (
-        <Skills key={skill._id} skill={skill} />
-      ))}
-    </>
+    <div className="app">
+      <nav className="panel nav-panel">
+        <span className="status-text">Portfolio</span>
+      </nav>
+
+      <header className="panel hero-panel">
+        <h1>Hello World</h1>
+      </header>
+
+      <section className="panel skills-section">
+        <h2>Skills</h2>
+        {loading && <p className="status-text">Loading...</p>}
+        {error && <p className="status-text">Error: {error}</p>}
+        <div className="skills-grid">
+          {skills.map(skill => (
+            <Skills key={skill._id} skill={skill} />
+          ))}
+        </div>
+      </section>
+    </div>
   )
 }
 
