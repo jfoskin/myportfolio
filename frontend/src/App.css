@@ -34,6 +34,65 @@
   margin: 0 0 16px;
 }
 
+.projects-section h2 {
+  margin: 0 0 16px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card {
+  border: 2px solid var(--border);
+  background: var(--code-bg);
+  padding: 16px;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+}
+
+.project-card h4 {
+  margin: 0 0 8px;
+  color: var(--text-h);
+}
+
+.project-description {
+  margin: 0 0 12px;
+}
+
+.project-links {
+  display: flex;
+  gap: 16px;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-h);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+}
+
+.project-links img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
