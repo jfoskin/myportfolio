@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import Skills from "./components/Skills"
+import Footer from "./components/Footer"
 import "./App.css"
 
 
@@ -53,6 +54,7 @@ const getSkills = async () => {
           ))}
         </div>
       </section>
+      <Footer />
     </div>
   )
 }
