@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import Skills from "./components/Skills"
 import Footer from "./components/Footer"
+import NavBar from "./components/NavBar"
 import "./App.css"
 
 
@@ -36,12 +37,11 @@ const getSkills = async () => {
 
   return (
     <div className="app">
-      <nav className="panel nav-panel">
-        <span className="status-text">Portfolio</span>
-      </nav>
+      
+     
 
-      <header className="panel hero-panel">
-        <h1>Hello World</h1>
+      <header >
+        <NavBar/>
       </header>
 
       <section className="panel skills-section">
