@@ -4,9 +4,9 @@ import whitejollyRoger from "../assets/whitejolly.jpg"
 
 export default function Footer() {
   return (
-    <div>
-    <p>Est: 2026 </p>
-    <img className="jolly" src={whitejollyRoger} alt="Jolly Roger for straw hat pirates from one piece" />
-    </div>
+    <footer className="panel footer-panel">
+      <p>Est: 2026</p>
+      <img className="jolly" src={whitejollyRoger} alt="Jolly Roger for straw hat pirates from one piece" />
+    </footer>
   )
 }

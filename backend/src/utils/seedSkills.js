@@ -19,7 +19,7 @@ const skills = [
     { name: 'SQL', image: 'https://img.icons8.com/?size=100&id=3767&format=png&color=ffffff' },
     { name: 'NoSQL', image: 'https://img.icons8.com/?size=100&id=ldDPuBgZxAHN&format=png&color=ffffff' },
     { name: 'Figma', image: 'https://img.icons8.com/?size=100&id=GflC6KLkdd0Y&format=png&color=ffffff' },
-    { name: 'edux', image: 'https://img.icons8.com/?size=100&id=egQrEphjrirz&format=png&color=ffffff' },
+    { name: 'Redux', image: 'https://img.icons8.com/?size=100&id=egQrEphjrirz&format=png&color=ffffff' },
     // { name: '', image: '' },
 
 ]
