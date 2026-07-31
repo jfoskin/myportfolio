@@ -69,11 +69,15 @@
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1 / 1;
   border: 2px solid var(--border);
   background: var(--code-bg);
   padding: 20px;
   border-radius: 0;
   box-shadow: var(--pixel-shadow);
+  overflow: hidden;
   transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
 
   &:hover {
@@ -83,6 +87,15 @@
   }
 }
 
+.project-image {
+  width: 100%;
+  height: 40%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  border: 2px solid var(--border);
+  margin: 0 0 12px;
+}
+
 .project-card h4 {
   margin: 0 0 8px;
   color: var(--text-h);
@@ -90,11 +103,16 @@
 
 .project-description {
   margin: 0 0 12px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .project-links {
   display: flex;
   gap: 16px;
+  margin-top: auto;
 }
 
 .project-links a {

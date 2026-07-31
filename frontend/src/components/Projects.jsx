@@ -1,6 +1,9 @@
+import placeholderImage from "../assets/windowsDesktop.png"
+
 export default function Projects({ project }) {
   return (
     <div className="project-card">
+        <img className="project-image" src={project.image || placeholderImage} alt={`${project.title} preview`} />
         <h4>{project.title}</h4>
         <p className="project-description">{project.description}</p>
         <div className="project-links">
