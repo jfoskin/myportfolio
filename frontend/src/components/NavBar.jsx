@@ -9,7 +9,7 @@ export default function NavBar() {
         <p>Skills</p>
         <p>Contact</p>
 
-
+      <button>toggle</button>
      
       </nav>
   )
