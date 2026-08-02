@@ -16,20 +16,19 @@ const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
 
 useEffect(() => {
-const getSkills = async () => {
-    const getProjects = async () => {
-      try {
-        const projectsResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/projects`)
-        if (!projectsResponse.ok) throw new Error(`Failed to fetch projects: ${projectsResponse.status} ${projectsResponse.statusText}`)
+  const getProjects = async () => {
+    try {
+      const projectsResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/projects`)
+      if (!projectsResponse.ok) throw new Error(`Failed to fetch projects: ${projectsResponse.status} ${projectsResponse.statusText}`)
         const projectsData = await projectsResponse.json()
-        setProjects(projectsData)
-      } catch (error) {
-        console.log(`Error while trying to get projects`, error)
-        setError(error.message)
-      }
+      setProjects(projectsData)
+    } catch (error) {
+      console.log(`Error while trying to get projects`, error)
+      setError(error.message)
     }
-    getProjects()
-
+  }
+  
+  const getSkills = async () => {
     try {
 
       const skillsResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/skills`)
@@ -47,6 +46,9 @@ const getSkills = async () => {
     }
  
   }
+
+  getProjects()
+
     getSkills()
 
 },[])
