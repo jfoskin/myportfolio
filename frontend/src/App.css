@@ -177,6 +177,17 @@
   color: var(--text);
 }
 
+.contact-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 .contact-section h2 {
   margin: 0 0 16px;
 }
