@@ -1,4 +1,4 @@
-export default function NavBar() {
+export default function NavBar({ isModern, onThemeToggle }) {
   return (
    <nav className="panel nav-panel">
         
@@ -9,7 +9,14 @@ export default function NavBar() {
         <p>Skills</p>
         <p>Contact</p>
 
-      <button>toggle</button>
+      <button
+        className="theme-toggle"
+        type="button"
+        onClick={onThemeToggle}
+        aria-pressed={isModern}
+      >
+        {isModern ? "Retro" : "Modern"}
+      </button>
      
       </nav>
   )

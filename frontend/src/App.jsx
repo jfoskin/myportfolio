@@ -14,6 +14,11 @@ const [skills,setSkills] = useState([])
 const [projects,setProjects] = useState([])
 const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
+const [isModern, setIsModern] = useState(false)
+
+useEffect(() => {
+  document.documentElement.dataset.theme = isModern ? "modern" : "retro"
+}, [isModern])
 
 useEffect(() => {
   const getProjects = async () => {
@@ -58,7 +63,10 @@ useEffect(() => {
     
 
       <header >
-        <NavBar/>
+        <NavBar
+          isModern={isModern}
+          onThemeToggle={() => setIsModern(currentTheme => !currentTheme)}
+        />
       </header>
 
     

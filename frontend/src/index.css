@@ -34,9 +34,31 @@
   }
 }
 
+:root[data-theme='modern'] {
+  --text: #334155;
+  --text-h: #0f172a;
+  --bg: #f6f8fb;
+  --panel-bg: rgba(255, 255, 255, 0.9);
+  --border: #d9e0e9;
+  --border-soft: rgba(15, 23, 42, 0.12);
+  --code-bg: #f1f5f9;
+  --accent: #007f73;
+  --accent-bg: rgba(0, 127, 115, 0.1);
+  --accent-border: rgba(0, 127, 115, 0.45);
+  --social-bg: rgba(15, 23, 42, 0.06);
+  --heading: 'Avenir Next', 'Segoe UI', sans-serif;
+  --mono: 'Avenir Next', 'Segoe UI', sans-serif;
+  --pixel-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  --pixel-shadow-accent: 0 16px 36px rgba(0, 127, 115, 0.14);
+
+  color-scheme: light;
+}
+
 body {
   margin: 0;
   image-rendering: pixelated;
+  background: var(--bg);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -131,5 +153,28 @@ code {
   object-fit: cover;
   image-rendering: pixelated;
   border: 2px solid var(--border);
+}
+
+:root[data-theme='modern'] body {
+  image-rendering: auto;
+}
+
+:root[data-theme='modern'] #root {
+  border-inline-color: transparent;
+}
+
+:root[data-theme='modern'] h1,
+:root[data-theme='modern'] h2,
+:root[data-theme='modern'] h3,
+:root[data-theme='modern'] h4 {
+  font-weight: 700;
+  text-shadow: none;
+}
+
+:root[data-theme='modern'] .homeLogo,
+:root[data-theme='modern'] .jolly {
+  image-rendering: auto;
+  border-width: 1px;
+  border-radius: 12px;
 }
 
