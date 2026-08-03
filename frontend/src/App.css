@@ -319,6 +319,6 @@
 
 :root[data-theme='modern'] .contact-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 127, 115, 0.2);
+  box-shadow: 0 8px 20px rgba(45, 212, 191, 0.2);
 }
 
