@@ -277,10 +277,30 @@
 }
 
 .footer-panel {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
+}
+
+#percent {
+  position: absolute;
+  bottom: 0;
+  left: 24px;
+  padding: 0 8px;
+  background: var(--panel-bg);
+  color: var(--text-h);
+  transform: translateY(50%);
+}
+
+.footer-panel .jolly {
+  position: absolute;
+  right: 24px;
+  bottom: 0;
+  padding: 0 8px;
+  background: var(--panel-bg);
+  transform: translateY(50%);
 }
 
 :root[data-theme='modern'] .app {
