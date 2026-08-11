@@ -1,7 +1,7 @@
 
 export default function Contact() {
   return (
-    <div className="contact-layout">
+    <div id="contact" className="contact-layout">
     <section className="panel contact-section"> 
 
       <h2>Let's Build Something </h2> 

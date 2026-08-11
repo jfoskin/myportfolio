@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
+import { Route, Routes } from "react-router-dom"
 import Skills from "./components/Skills"
 import Footer from "./components/Footer"
 import NavBar from "./components/NavBar"
 import About from "./components/About"
 import Contact from "./components/Contact" 
 import Projects from "./components/Projects"
+import LOL from "./components/LOL"
 import "./App.css"
 
 
@@ -69,31 +71,37 @@ useEffect(() => {
         />
       </header>
 
-    
-      <About/>
-      {/* <Projects projects={projects} />*/}
+      <Routes>
+        <Route path="/" element={
+          <>
+            <About/>
+            {/* <Projects projects={projects} />*/}
 
-      <section className="panel projects-section">
-  <h2>Projects</h2>
-  <div className="projects-grid">
-    {projects.map(project => (
-      <Projects key={project._id} project={project} />
-    ))}
-  </div>
-</section>
+            <section id="projects" className="panel projects-section">
+              <h2>Projects</h2>
+              <div className="projects-grid">
+                {projects.map(project => (
+                  <Projects key={project._id} project={project} />
+                ))}
+              </div>
+            </section>
 
-      <section className="panel skills-section">
-        <h2>Skills</h2>
-        {loading && <p className="status-text">Loading...</p>}
-        {error && <p className="status-text">Error: {error}</p>}
-        <div className="skills-grid">
-          {skills.map(skill => (
-            <Skills key={skill._id} skill={skill} />
-          ))}
-        </div>
-      </section>
-          
-      <Contact/>
+            <section id="skills" className="panel skills-section">
+              <h2>Skills</h2>
+              {loading && <p className="status-text">Loading...</p>}
+              {error && <p className="status-text">Error: {error}</p>}
+              <div className="skills-grid">
+                {skills.map(skill => (
+                  <Skills key={skill._id} skill={skill} />
+                ))}
+              </div>
+            </section>
+
+            <Contact/>
+          </>
+        } />
+        <Route path="/lol" element={<LOL />} />
+      </Routes>
       <Footer />
     </div>
   )
