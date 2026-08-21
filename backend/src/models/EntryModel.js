@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const entrySchema = mongoose.Schema(
+const entrySchema = new mongoose.Schema(
     {
         title: { type: String, required: true },
         summary: { type: String },
@@ -14,3 +14,7 @@ const entrySchema = mongoose.Schema(
     }
 
 )
+
+const Entry = mongoose.model('Entry', entrySchema)
+
+module.exports = Entry

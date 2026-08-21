@@ -15,6 +15,7 @@ const projects = ['isitsafeforme', 'hope',]
 const adminRoutes = require('./src/routes/admin');
 const projectRouter = require('./src/routes/projectRoutes');
 const skillRouter = require('./src/routes/skillRoutes');
+const entryRouter = require('./src/routes/entryRoutes')
 
 
 // DATABASE CONNECTION
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
 
 app.use('/projects', projectRouter)
 app.use('/skills', skillRouter)
+app.use('/entries', entryRouter)
 app.use('/mgmt', adminRoutes)
 
 

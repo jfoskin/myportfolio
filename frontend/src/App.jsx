@@ -29,6 +29,7 @@ useEffect(() => {
       if (!projectsResponse.ok) throw new Error(`Failed to fetch projects: ${projectsResponse.status} ${projectsResponse.statusText}`)
         const projectsData = await projectsResponse.json()
       setProjects(projectsData)
+      setLoading(false)
     } catch (error) {
       console.log(`Error while trying to get projects`, error)
       setError(error.message)
@@ -54,9 +55,12 @@ useEffect(() => {
  
   }
 
-  getProjects()
+  
 
-    getSkills()
+  getProjects()
+  getSkills()
+ 
+
 
 },[])
 
@@ -79,6 +83,7 @@ useEffect(() => {
 
             <section id="projects" className="panel projects-section">
               <h2>Projects</h2>
+               {loading && <p className="status-text">Loading...</p>}
               <div className="projects-grid">
                 {projects.map(project => (
                   <Projects key={project._id} project={project} />
@@ -96,6 +101,8 @@ useEffect(() => {
                 ))}
               </div>
             </section>
+
+         
 
             <Contact/>
           </>
