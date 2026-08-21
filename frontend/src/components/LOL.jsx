@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-function LOL() {
+function LOL({ isModern }) {
 
     const [entries,setEntries] = useState([])
     const [loading,setLoading] = useState(true)
@@ -14,7 +14,7 @@ function LOL() {
 
                  if (!entryResponse.ok) throw new Error(`Failed to fetch entries: ${entryResponse.status} ${entryResponse.statusText}`)
 
-                const entriesData =  entryResponse.json()
+                const entriesData =  await entryResponse.json()
 
                 setEntries(entriesData)
             } catch (error) {
@@ -31,19 +31,24 @@ function LOL() {
   return (
     <main className="panel lol-section">
         <h3>Learning out loud</h3>
-        <div id='thoughts'></div>
+       {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
 
-        <>
-        <article className="entries">
-          
-            <h4 className="entryTitle">Working on Portfolio</h4>
-            <p className="entryDate">2026-08-21</p>
-            <p className='entryBlurb'> started looking into how I was going to structure my learning in my porfotlio section</p>
-            <p className='entryTags' > node, MongoDB</p>
-
-
+      {entries.map(entry => (
+        <article key={entry._id}>
+          <h2>{entry.title}</h2>
+          <p>{entry.summary}</p>
+          <p>
+            {isModern
+              ? new Date(entry.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                })
+              : new Date(entry.createdAt).toISOString()}
+          </p>
         </article>
-        </>
+      ))}
     </main>
   )
 }

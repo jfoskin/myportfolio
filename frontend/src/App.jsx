@@ -107,7 +107,7 @@ useEffect(() => {
             <Contact/>
           </>
         } />
-        <Route path="/lol" element={<LOL />} />
+        <Route path="/lol" element={<LOL isModern={isModern} />} />
       </Routes>
       <Footer />
     </div>
