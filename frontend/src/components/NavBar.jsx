@@ -11,7 +11,7 @@ export default function NavBar({ isModern, onThemeToggle }) {
         <p><a href="/#about">About</a></p>
         <p><a href="/#projects">Projects</a></p>
         <p><a href="/#skills">Skills</a></p>
-        <p><Link to="/lol">LOL</Link></p>
+        <p><Link to="/lol">Logs</Link></p>
         <p><a href="/#contact">Contact</a></p>
 
       <button
