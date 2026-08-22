@@ -4,7 +4,7 @@ const Entry = require('../models/EntryModel');
 
 entryRouter.get('/', async (req, res) => {
     try {
-        const enries = Entry.find({})
+        const enries = await Entry.find({})
         res.status(200)
     } catch (error) {
         console.log(`Error while trying to get all projects`, error)
@@ -14,3 +14,5 @@ entryRouter.get('/', async (req, res) => {
         })
     }
 })
+
+module.exports = entryRouter
