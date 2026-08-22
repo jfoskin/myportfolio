@@ -7,9 +7,9 @@ entryRouter.get('/', async (req, res) => {
         const entries = await Entry.find({})
         res.status(200).json(entries)
     } catch (error) {
-        console.log(`Error while trying to get all projects`, error)
-        res.status(400).json({
-            error: `Failed to get all projects`,
+        console.log(`Error while trying to get all entries`, error)
+        res.status(500).json({
+            error: `Failed to get all entries`,
             details: error.message
         })
     }
