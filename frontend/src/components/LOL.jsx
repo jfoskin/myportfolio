@@ -30,25 +30,42 @@ function LOL({ isModern }) {
     
   return (
     <main className="panel lol-section">
-        <h3>Learning out loud</h3>
-       {loading && <p>Loading...</p>}
+      <div className="lol-heading">
+        <span className="lol-square" aria-hidden="true"></span>
+        <h3>My learning log</h3>
+        <span className="lol-status">Under construction</span>
+      </div>
+
+      {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
 
-      {entries.map(entry => (
-        <article key={entry._id}>
-          <h2>{entry.title}</h2>
-          <p>{entry.summary}</p>
-          <p>
-            {isModern
-              ? new Date(entry.createdAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric"
-                })
-              : new Date(entry.createdAt).toISOString()}
-          </p>
-        </article>
-      ))}
+      <div className="entry-list">
+        {entries.map(entry => (
+          <article className="entry-card" key={entry._id}>
+            <h2 className="entry-title">
+              <span className="entry-square" aria-hidden="true"></span>
+              {entry.title}
+            </h2>
+            <p className="entry-summary">{entry.summary}</p>
+            <div className="entry-meta">
+              <div className="entry-tags">
+                {entry.tags?.map(tag => (
+                  <span className="entry-tag" key={tag}>{tag}</span>
+                ))}
+              </div>
+              <time className="entry-date" dateTime={entry.createdAt}>
+                {isModern
+                  ? `Posted ${new Date(entry.createdAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric"
+                    })}`
+                  : new Date(entry.createdAt).toISOString()}
+              </time>
+            </div>
+          </article>
+        ))}
+      </div>
     </main>
   )
 }
