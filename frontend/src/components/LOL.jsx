@@ -40,10 +40,11 @@ function LOL({ isModern }) {
       {error && <p>Error: {error}</p>}
 
       <div className="entry-list">
-        {entries.map(entry => (
+        {entries.map((entry, index) => (
           <article className="entry-card" key={entry._id}>
             <h2 className="entry-title">
               <span className="entry-square" aria-hidden="true"></span>
+              <span className="entry-index">#{String(entries.length - index).padStart(3, "0")}</span>
               {entry.title}
             </h2>
             <p className="entry-summary">{entry.summary}</p>

@@ -307,6 +307,171 @@
   transform: translateY(50%);
 }
 
+.lol-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--border);
+}
+
+.lol-heading h3 {
+  margin: 0;
+}
+
+.lol-square,
+.entry-square {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  border: 2px solid var(--border);
+  background: var(--code-bg);
+}
+
+.lol-status {
+  margin-left: auto;
+  padding: 6px 14px;
+  border: 2px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-family: var(--heading);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  @media (max-width: 1024px) {
+    font-size: 8px;
+  }
+}
+
+.entry-list {
+  display: grid;
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.entry-card {
+  border: 2px solid var(--border);
+  background: var(--code-bg);
+  padding: 20px 24px;
+  box-shadow: var(--pixel-shadow);
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+
+  &:hover {
+    border-color: var(--accent-border);
+    box-shadow: var(--pixel-shadow-accent);
+    transform: translate(-2px, -2px);
+  }
+}
+
+.entry-card:nth-child(3n+1) .entry-square {
+  background: #2f7a3d;
+  border-color: #4ade80;
+}
+
+.entry-card:nth-child(3n+2) .entry-square {
+  background: #7a2f2f;
+  border-color: #f87171;
+}
+
+.entry-card:nth-child(3n) .entry-square {
+  background: #1d4e7a;
+  border-color: #60a5fa;
+}
+
+.entry-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 12px;
+  font-size: 11px;
+
+  @media (max-width: 1024px) {
+    font-size: 10px;
+  }
+}
+
+.entry-index {
+  padding: 2px 8px;
+  border: 2px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 9px;
+
+  @media (max-width: 1024px) {
+    font-size: 8px;
+  }
+}
+
+.entry-summary {
+  position: relative;
+  padding-left: 20px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.entry-summary::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.entry-meta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.entry-tag {
+  padding: 4px 10px;
+  border: 2px solid var(--border);
+  background: var(--panel-bg);
+  color: var(--text-h);
+  font-size: 9px;
+  text-transform: lowercase;
+
+  @media (max-width: 1024px) {
+    font-size: 8px;
+  }
+}
+
+.entry-date {
+  flex: 0 0 auto;
+  color: var(--text);
+  opacity: 0.7;
+  font-size: 12px;
+  text-transform: lowercase;
+}
+
+@media (max-width: 600px) {
+  .lol-heading {
+    gap: 12px;
+  }
+
+  .lol-status {
+    padding: 5px 10px;
+  }
+
+  .entry-card {
+    padding: 18px 18px;
+  }
+
+  .entry-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 :root[data-theme='modern'] .lol-section {
   padding: 0;
   border: 0;
@@ -365,6 +530,16 @@
   gap: 20px;
   margin: 0 0 12px;
   font-size: 22px;
+}
+
+:root[data-theme='modern'] .entry-index {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 999px;
+  background: #06396b;
+  color: #7dbbff;
+  font-weight: 700;
+  font-size: 13px;
 }
 
 :root[data-theme='modern'] .entry-summary {
