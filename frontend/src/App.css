@@ -319,13 +319,25 @@
   margin: 0;
 }
 
-.lol-square,
-.entry-square {
+.lol-square {
   width: 14px;
   height: 14px;
   flex: 0 0 auto;
   border: 2px solid var(--border);
   background: var(--code-bg);
+}
+
+.entry-square {
+  flex: 0 0 auto;
+  padding: 3px 8px;
+  border: 2px solid var(--border);
+  background: var(--code-bg);
+  color: var(--text-h);
+  font-size: 9px;
+
+  @media (max-width: 1024px) {
+    font-size: 8px;
+  }
 }
 
 .lol-status {
@@ -348,12 +360,13 @@
   display: grid;
   gap: 20px;
   margin-top: 28px;
+  font-family: var(--mono);
 }
 
 .entry-card {
   border: 2px solid var(--border);
   background: var(--code-bg);
-  padding: 20px 24px;
+  padding: 16px 20px;
   box-shadow: var(--pixel-shadow);
   transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
 
@@ -364,94 +377,52 @@
   }
 }
 
-.entry-card:nth-child(3n+1) .entry-square {
-  background: #2f7a3d;
-  border-color: #4ade80;
-}
-
-.entry-card:nth-child(3n+2) .entry-square {
-  background: #7a2f2f;
-  border-color: #f87171;
-}
-
-.entry-card:nth-child(3n) .entry-square {
-  background: #1d4e7a;
-  border-color: #60a5fa;
-}
-
-.entry-title {
+.entry-row {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 0 0 12px;
-  font-size: 11px;
- 
-
-  @media (max-width: 1024px) {
-    font-size: 10px;
-  }
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
 .entry-index {
-  padding: 2px 8px;
-  border: 2px solid var(--accent-border);
-  background: var(--accent-bg);
-  color: var(--accent);
-  font-size: 9px;
+  color: var(--text-h);
+  font-weight: 700;
+}
 
-  @media (max-width: 1024px) {
-    font-size: 8px;
-  }
+.entry-row .entry-date {
+  color: var(--text-h);
+  opacity: 1;
+  font-size: 13px;
+  text-transform: none;
+}
+
+.entry-row .entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.entry-row .entry-tag {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 13px;
+  text-transform: lowercase;
+}
+
+.entry-title {
+  margin: 0 0 6px;
+  color: var(--text);
+  opacity: 0.6;
+  font-size: 13px;
+  font-family: var(--mono);
 }
 
 .entry-summary {
-  position: relative;
-  padding-left: 20px;
   color: var(--text);
   line-height: 1.7;
-}
-
-.entry-summary::before {
-  content: '>';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-}
-
-.entry-meta {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.entry-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.entry-tag {
-  padding: 4px 10px;
-  border: 2px solid var(--border);
-  background: var(--panel-bg);
-  color: var(--text-h);
-  font-size: 9px;
-  text-transform: lowercase;
-
-  @media (max-width: 1024px) {
-    font-size: 8px;
-  }
-}
-
-.entry-date {
-  flex: 0 0 auto;
-  color: var(--text);
-  opacity: 0.7;
-  font-size: 12px;
-  text-transform: lowercase;
 }
 
 @media (max-width: 600px) {
@@ -467,9 +438,10 @@
     padding: 18px 18px;
   }
 
-  .entry-meta {
-    align-items: flex-start;
+  .entry-row {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 }
 
@@ -494,12 +466,35 @@
   font-size: 22px;
 }
 
-:root[data-theme='modern'] .lol-square,
-:root[data-theme='modern'] .entry-square {
+:root[data-theme='modern'] .lol-square {
   width: 16px;
   height: 16px;
   flex: 0 0 auto;
   border: 2px solid #60a5fa;
+}
+
+:root[data-theme='modern'] .entry-card:nth-child(3n+1) .entry-square,
+:root[data-theme='modern'] .entry-card:nth-child(3n+2) .entry-square,
+:root[data-theme='modern'] .entry-card:nth-child(3n) .entry-square {
+  background: none;
+  border: none;
+}
+
+:root[data-theme='modern'] .entry-square {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border: none;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:root[data-theme='modern'] .entry-square::before {
+  content: '📘';
+  font-size: 16px;
+  line-height: 1;
 }
 
 :root[data-theme='modern'] .lol-status {
@@ -531,16 +526,6 @@
   gap: 20px;
   margin: 0 0 12px;
   font-size: 22px;
-}
-
-:root[data-theme='modern'] .entry-index {
-  padding: 4px 12px;
-  border: none;
-  border-radius: 999px;
-  background: #06396b;
-  color: #7dbbff;
-  font-weight: 700;
-  font-size: 13px;
 }
 
 :root[data-theme='modern'] .entry-summary {

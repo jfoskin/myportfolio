@@ -16,7 +16,11 @@ function LOL({ isModern }) {
 
                 const entriesData =  await entryResponse.json()
 
-                setEntries(entriesData)
+                const sortedEntries = entriesData.sort(
+                    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                )
+
+                setEntries(sortedEntries)
             } catch (error) {
                 setError(error.message)
             }finally{
@@ -40,32 +44,54 @@ function LOL({ isModern }) {
       {error && <p>Error: {error}</p>}
 
       <div className="entry-list">
-        {entries.map((entry, index) => (
-          <article className="entry-card" key={entry._id}>
-            <h2 className="entry-title">
-              <span className="entry-square" aria-hidden="true"></span>
-              <span className="entry-index">#{String(entries.length - index).padStart(3, "0")}</span>
-              {entry.title}
-            </h2>
-            <p className="entry-summary">{entry.summary}</p>
-            <div className="entry-meta">
-              <div className="entry-tags">
-                {entry.tags?.map(tag => (
-                  <span className="entry-tag" key={tag}>{tag}</span>
-                ))}
+        {entries.map((entry, index) => {
+          const isoDate = new Date(entry.createdAt).toISOString().split("T")[0]
+          const shortDate = new Date(entry.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+          })
+
+          if (isModern) {
+            return (
+              <article className="entry-card" key={entry._id}>
+                <h2 className="entry-title">
+                  <span className="entry-square" aria-hidden="true"></span>
+                  {entry.title}
+                </h2>
+                <p className="entry-summary">{entry.summary}</p>
+                <div className="entry-meta">
+                  <div className="entry-tags">
+                    {entry.tags?.map(tag => (
+                      <span className="entry-tag" key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <time className="entry-date" dateTime={entry.createdAt}>
+                    {`Posted ${shortDate}`}
+                  </time>
+                </div>
+              </article>
+            )
+          }
+
+          const entryNumber = String(entries.length - index).padStart(3, "0")
+
+          return (
+            <article className="entry-card" key={entry._id}>
+              <div className="entry-row">
+                <span className="entry-index">{entryNumber}</span>
+                <time className="entry-date" dateTime={entry.createdAt}>{isoDate}</time>
+                <div className="entry-tags">
+                  {entry.tags?.map(tag => (
+                    <span className="entry-tag" key={tag}>[{tag}]</span>
+                  ))}
+                </div>
               </div>
-              <time className="entry-date" dateTime={entry.createdAt}>
-                {isModern
-                  ? `Posted ${new Date(entry.createdAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric"
-                    })}`
-                  : new Date(entry.createdAt).toISOString()}
-              </time>
-            </div>
-          </article>
-        ))}
+              <p className="entry-title">&gt; {entry.title}</p>
+              <p className="entry-summary">{entry.summary}</p>
+            </article>
+          )
+        })}
       </div>
     </main>
   )
