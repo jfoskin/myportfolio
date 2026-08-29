@@ -2,6 +2,11 @@ const express = require('express')
 const Project = require('../../models/ProjectModel')
 const adminRouter = express.Router()
 
+// Only Mongoose validation messages are safe to expose to the client
+function safeErrorDetails(error) {
+    return error.name === 'ValidationError' ? error.message : undefined
+}
+
 // Create
 adminRouter.post('/projects', async (req, res) => {
     try {
@@ -9,7 +14,8 @@ adminRouter.post('/projects', async (req, res) => {
         const newProject = await Project.create({ title, github, description, url, image })
         res.status(201).json(newProject)
     } catch (error) {
-        res.status(400).json({ error: 'Failed to create project', details: error.message })
+        console.log(`Error while trying to create project`, error)
+        res.status(400).json({ error: 'Failed to create project', details: safeErrorDetails(error) })
     }
 })
 
@@ -24,7 +30,8 @@ adminRouter.put('/projects/:id', async (req, res) => {
         ).exec()
         res.status(200).json(updatedProject)
     } catch (error) {
-        res.status(400).json({ error: 'Failed to update project', details: error.message })
+        console.log(`Error while trying to update project`, error)
+        res.status(400).json({ error: 'Failed to update project', details: safeErrorDetails(error) })
     }
 })
 

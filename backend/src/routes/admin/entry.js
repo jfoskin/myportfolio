@@ -2,6 +2,11 @@ const express = require('express')
 const Entry = require('../../models/EntryModel')
 const adminRouter = express.Router()
 
+// Only Mongoose validation messages are safe to expose to the client
+function safeErrorDetails(error) {
+    return error.name === 'ValidationError' ? error.message : undefined
+}
+
 // Create
 adminRouter.post('/entries', async (req, res) => {
     try {
@@ -9,7 +14,8 @@ adminRouter.post('/entries', async (req, res) => {
         const newEntry = await Entry.create({ title, summary, tags })
         res.status(201).json(newEntry)
     } catch (error) {
-        res.status(400).json({ error: 'Failed to create entry', details: error.message })
+        console.log(`Error while trying to create entry`, error)
+        res.status(400).json({ error: 'Failed to create entry', details: safeErrorDetails(error) })
     }
 })
 
@@ -24,7 +30,8 @@ adminRouter.put('/entries/:id', async (req, res) => {
         ).exec()
         res.status(200).json(updatedEntry)
     } catch (error) {
-        res.status(400).json({ error: 'Failed to update entry', details: error.message })
+        console.log(`Error while trying to update entry`, error)
+        res.status(400).json({ error: 'Failed to update entry', details: safeErrorDetails(error) })
     }
 })
 
@@ -34,7 +41,8 @@ adminRouter.delete('/entries/:id', async (req, res) => {
         await Entry.findByIdAndDelete(req.params.id).exec()
         res.status(200).json({ message: 'Entry deleted successfully' })
     } catch (error) {
-        res.status(400).json({ error: 'Failed to delete entry', details: error.message })
+        console.log(`Error while trying to delete entry`, error)
+        res.status(400).json({ error: 'Failed to delete entry' })
     }
 })
 

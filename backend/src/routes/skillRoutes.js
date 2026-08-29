@@ -11,10 +11,7 @@ skillRouter.get('/', async (req, res) => {
         console.log(`skills`)
     } catch (error) {
         console.log(`Error while trying to get all skills`, error)
-        res.status(400).json({
-            error: `Failed to get all skills`,
-            details: error.message
-        })
+        res.status(500).json({ error: `Failed to get all skills` })
     }
 })
 

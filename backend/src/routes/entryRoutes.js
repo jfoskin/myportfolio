@@ -8,10 +8,7 @@ entryRouter.get('/', async (req, res) => {
         res.status(200).json(entries)
     } catch (error) {
         console.log(`Error while trying to get all entries`, error)
-        res.status(500).json({
-            error: `Failed to get all entries`,
-            details: error.message
-        })
+        res.status(500).json({ error: `Failed to get all entries` })
     }
 })
 

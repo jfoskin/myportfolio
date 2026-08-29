@@ -10,10 +10,7 @@ projectRouter.get('/', async (req, res) => {
         res.status(200).json(projects)
     } catch (error) {
         console.log(`Error while trying to get all projects`, error)
-        res.status(400).json({
-            error: `Failed to get all projects`,
-            details: error.message
-        })
+        res.status(500).json({ error: `Failed to get all projects` })
     }
 })
 
