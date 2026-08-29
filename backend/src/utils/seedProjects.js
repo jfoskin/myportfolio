@@ -24,11 +24,16 @@ const projects = [
 ]
 
 async function seed() {
-    await mongoose.connect(process.env.DATABASEURL)
-    await Project.deleteMany({})
-    await Project.insertMany(projects)
-    console.log('Projects seeded')
-    process.exit(0)
+    try {
+        await mongoose.connect(process.env.DATABASEURL)
+        await Project.deleteMany({})
+        await Project.insertMany(projects)
+        console.log('Projects seeded')
+        process.exit(0)
+    } catch (error) {
+        console.log(`Error while trying to seed projects`, error)
+        process.exit(1)
+    }
 }
 
 seed()

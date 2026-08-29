@@ -26,11 +26,16 @@ const skills = [
 
 
 async function seed() {
-    await mongoose.connect(process.env.DATABASEURL)
-    await Skill.deleteMany({})
-    await Skill.insertMany(skills)
-    console.log('Skills seeded')
-    process.exit(0)
+    try {
+        await mongoose.connect(process.env.DATABASEURL)
+        await Skill.deleteMany({})
+        await Skill.insertMany(skills)
+        console.log('Skills seeded')
+        process.exit(0)
+    } catch (error) {
+        console.log(`Error while trying to seed skills`, error)
+        process.exit(1)
+    }
 }
 
 seed()

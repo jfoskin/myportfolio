@@ -47,8 +47,13 @@ adminRouter.get('/projects/:id/edit', async (req, res) => {
 
 // Delete
 adminRouter.delete('/projects/:id', async (req, res) => {
-    const deletedProject = await Project.findByIdAndDelete(req.params.id).exec()
-    res.status(200).json({ message: 'Project deleted successfully' })
+    try {
+        await Project.findByIdAndDelete(req.params.id).exec()
+        res.status(200).json({ message: 'Project deleted successfully' })
+    } catch (error) {
+        console.log(`Error while trying to delete project`, error)
+        res.status(400).json({ error: 'Failed to delete project' })
+    }
 })
 
 module.exports = adminRouter;

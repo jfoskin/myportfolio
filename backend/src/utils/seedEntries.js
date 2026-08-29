@@ -12,11 +12,16 @@ const entries = [
 
 
 async function seed() {
-    await mongoose.connect(process.env.DATABASEURL)
-    await Entry.deleteMany({})
-    await Entry.insertMany(entries)
-    console.log('Entries seeded')
-    process.exit(0)
+    try {
+        await mongoose.connect(process.env.DATABASEURL)
+        await Entry.deleteMany({})
+        await Entry.insertMany(entries)
+        console.log('Entries seeded')
+        process.exit(0)
+    } catch (error) {
+        console.log(`Error while trying to seed entries`, error)
+        process.exit(1)
+    }
 }
 
 seed()
