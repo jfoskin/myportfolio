@@ -8,7 +8,6 @@ skillRouter.get('/', async (req, res) => {
     try {
         const allSkills = await Skill.find({})
         res.status(200).send(allSkills)
-        console.log(`skills`)
     } catch (error) {
         console.log(`Error while trying to get all skills`, error)
         res.status(500).json({ error: `Failed to get all skills` })

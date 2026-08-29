@@ -9,7 +9,6 @@ const PORT = process.env.PORT
 let previousPage = "None"
 
 const uri = process.env.DATABASEURL;
-const projects = ['isitsafeforme', 'hope',]
 
 
 const adminRoutes = require('./src/routes/admin');
@@ -57,21 +56,6 @@ app.use('/mgmt', adminRoutes)
 app.get('/', (req, res) => {
     res.send('Hello World!')
 });
-
-
-app.get('/about', (req, res) => {
-    res.send('Hello World!')
-});
-
-
-// Example URL: /search?q=javascript&sort=popular
-
-app.get('/search', (req, res) => {
-    let category = req.query.cat || 'nothing'
-    let size = req.query.size || 'nothing'
-
-    res.send(` this is the cat ${category} and the size ${size} `)
-})
 
 
 // Ports

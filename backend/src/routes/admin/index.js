@@ -1,5 +1,4 @@
 const express = require('express')
-const Project = require('../projectRoutes')
 const authRouter = require('./auth')
 const projectAdminRouter = require('./project')
 const entryAdminRouter = require('./entry')
