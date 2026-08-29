@@ -38,10 +38,6 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-    console.log(`hey there the middle ware is running`)
-    console.log(`hey yyyaaaaaaa Previous page ${previousPage} 
-        currentPage ${req.path}`)
-
     previousPage = req.path
     next()
 });
@@ -55,6 +51,21 @@ app.use('/mgmt', adminRoutes)
 // Routes - INDUCES [Indexes,New, Delete, Update, Create,Edit,Show]
 app.get('/', (req, res) => {
     res.send('Hello World!')
+});
+
+// 404 handler - no route matched
+app.use((req, res) => {
+    res.status(404).json({ error: 'Not found' })
+});
+
+// Centralized error handler - catches errors passed via next(err) or thrown in async routes
+app.use((err, req, res, next) => {
+    console.error(err.stack || err)
+
+    const status = err.status || 500
+    const message = status === 500 ? 'Internal server error' : err.message
+
+    res.status(status).json({ error: message })
 });
 
 
