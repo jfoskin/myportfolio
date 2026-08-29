@@ -1,8 +1,16 @@
 const express = require('express')
-const Project = require('../projectRoutes')
+const Project = require('../../models/ProjectModel')
 const adminRouter = express.Router()
 
-//Create
+// Create
+adminRouter.post('/projects', async (req, res) => {
+    try {
+        const newProject = await Project.create(req.body)
+        res.status(201).json(newProject)
+    } catch (error) {
+        res.status(400).json({ error: 'Failed to create project', details: error.message })
+    }
+})
 
 // Update
 adminRouter.put('/projects/:id', async (req, res) => {
@@ -12,10 +20,12 @@ adminRouter.put('/projects/:id', async (req, res) => {
 
 // Edit
 adminRouter.get('/projects/:id/edit', async (req, res) => {
-
-    const editProject = await Project.findById(req.params.id)
-    console.log(`edit this project ${editProject}`)
-
+    try {
+        const editProject = await Project.findById(req.params.id)
+        res.status(200).json(editProject)
+    } catch (error) {
+        res.status(404).json({ message: 'Project not found' })
+    }
 })
 
 // Delete

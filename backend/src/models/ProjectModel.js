@@ -23,6 +23,10 @@ const projectSchema = new mongoose.Schema({
         trim: true,
         match: [/^https?:\/\/.+/, "Must be a valid URL"]
     },
+    image: {
+        type: String,
+        trim: true
+    },
 
 })
 

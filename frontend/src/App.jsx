@@ -7,6 +7,8 @@ import About from "./components/About"
 import Contact from "./components/Contact" 
 import Projects from "./components/Projects"
 import LOL from "./components/LOL"
+import AdminDashboard from "./components/AdminDashboard"
+import AdminLogin from "./components/AdminLogin"
 import "./App.css"
 
 
@@ -17,10 +19,25 @@ const [projects,setProjects] = useState([])
 const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
 const [isModern, setIsModern] = useState(false)
+const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false)
 
 useEffect(() => {
   document.documentElement.dataset.theme = isModern ? "modern" : "retro"
 }, [isModern])
+
+// Ctrl/Cmd + Shift + L opens the hidden admin login modal
+useEffect(() => {
+  const handleKeyDown = (event) => {
+    const modifierKey = event.ctrlKey || event.metaKey
+    if (modifierKey && event.shiftKey && event.key.toLowerCase() === "l") {
+      event.preventDefault()
+      setIsAdminLoginOpen(true)
+    }
+  }
+
+  document.addEventListener("keydown", handleKeyDown)
+  return () => document.removeEventListener("keydown", handleKeyDown)
+}, [])
 
 useEffect(() => {
   const getProjects = async () => {
@@ -108,7 +125,9 @@ useEffect(() => {
           </>
         } />
         <Route path="/lol" element={<LOL isModern={isModern} />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
+      <AdminLogin isOpen={isAdminLoginOpen} onClose={() => setIsAdminLoginOpen(false)} />
       <Footer />
     </div>
   )
