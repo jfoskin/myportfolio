@@ -15,6 +15,7 @@ authRouter.post('/login', async (req, res) => {
 
     } catch (error) {
         console.log(`There is an error`, error)
+        res.status(500).json({ error: 'Login failed' })
     }
 
 })
