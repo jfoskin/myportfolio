@@ -5,7 +5,8 @@ const adminRouter = express.Router()
 // Create
 adminRouter.post('/projects', async (req, res) => {
     try {
-        const newProject = await Project.create(req.body)
+        const { title, github, description, url, image } = req.body
+        const newProject = await Project.create({ title, github, description, url, image })
         res.status(201).json(newProject)
     } catch (error) {
         res.status(400).json({ error: 'Failed to create project', details: error.message })
@@ -14,8 +15,17 @@ adminRouter.post('/projects', async (req, res) => {
 
 // Update
 adminRouter.put('/projects/:id', async (req, res) => {
-    const updatedProject = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec()
-    res.status(200).json(updatedProject)
+    try {
+        const { title, github, description, url, image } = req.body
+        const updatedProject = await Project.findByIdAndUpdate(
+            req.params.id,
+            { title, github, description, url, image },
+            { new: true, runValidators: true }
+        ).exec()
+        res.status(200).json(updatedProject)
+    } catch (error) {
+        res.status(400).json({ error: 'Failed to update project', details: error.message })
+    }
 })
 
 // Edit
