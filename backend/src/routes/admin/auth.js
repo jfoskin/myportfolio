@@ -1,9 +1,18 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const rateLimit = require('express-rate-limit')
 const authRouter = express.Router()
 
-authRouter.post('/login', async (req, res) => {
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 5,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'Too many login attempts, please try again later' }
+})
+
+authRouter.post('/login', loginLimiter, async (req, res) => {
     const { password } = req.body
     try {
         const isValid = await bcrypt.compare(password, process.env.ADMIN_PASSWORD_HASH)
