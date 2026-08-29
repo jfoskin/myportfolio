@@ -1,7 +1,8 @@
 const express = require('express')
 const Project = require('../projectRoutes')
 const authRouter = require('./auth')
-const adminRouter = require('./project')
+const projectAdminRouter = require('./project')
+const entryAdminRouter = require('./entry')
 const authMiddleware = require('../../utils/authMiddleware')
 const router = express.Router()
 
@@ -11,7 +12,8 @@ router.use('/', authRouter)
 
 // everything below this line requires a valid token
 router.use(authMiddleware)
-router.use('/', adminRouter)
+router.use('/', projectAdminRouter)
+router.use('/', entryAdminRouter)
 
 
 

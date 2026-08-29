@@ -475,6 +475,12 @@
   color: var(--bg);
 }
 
+.admin-divider {
+  border: none;
+  border-top: 2px solid var(--border);
+  margin: 32px 0;
+}
+
 .footer-panel .jolly {
   position: absolute;
   right: 24px;

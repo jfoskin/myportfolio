@@ -15,18 +15,5 @@ entryRouter.get('/', async (req, res) => {
     }
 })
 
-entryRouter.post('/', async (req, res) => {
-    const entry = req.body
-
-    try {
-
-        const newEntry = await Entry.create(entry)
-        res.status(201).json(newEntry)
-
-    } catch (error) {
-        console.log("Failed to save entry", error)
-        res.status(500).json({ error: "Couldn't save entry" })
-    }
-})
 
 module.exports = entryRouter
