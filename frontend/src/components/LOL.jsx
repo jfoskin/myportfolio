@@ -44,7 +44,7 @@ function LOL({ isModern }) {
       {error && <p>Error: {error}</p>}
 
       <div className="entry-list">
-        {entries.map((entry, index) => {
+        {entries.map((entry) => {
           const isoDate = new Date(entry.createdAt).toISOString().split("T")[0]
           const shortDate = new Date(entry.createdAt).toLocaleDateString("en-US", {
             year: "numeric",
@@ -74,12 +74,9 @@ function LOL({ isModern }) {
             )
           }
 
-          const entryNumber = String(entries.length - index).padStart(3, "0")
-
           return (
             <article className="entry-card" key={entry._id}>
               <div className="entry-row">
-                <span className="entry-index">{entryNumber}</span>
                 <time className="entry-date" dateTime={entry.createdAt}>{isoDate}</time>
                 <div className="entry-tags">
                   {entry.tags?.map(tag => (
