@@ -134,7 +134,7 @@ useEffect(() => {
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
       <AdminLogin isOpen={isAdminLoginOpen} onClose={() => setIsAdminLoginOpen(false)} />
-      <Footer />
+      {!isModern && <Footer />}
       {isModern && <Dock onAboutClick={() => setIsAboutModalOpen(true)} onProjectsClick={() => setIsProjectsModalOpen(true)} onSkillsClick={() => setIsSkillsModalOpen(true)} onContactClick={() => setIsContactModalOpen(true)} onLogsClick={() => setIsLogsModalOpen(true)} />}
       {isModern && (
         <Modal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} title="About">

@@ -994,7 +994,7 @@
 .mac-dock {
   position: fixed;
   left: 50%;
-  bottom: 16px;
+  bottom: 5px;
   z-index: 20;
   transform: translateX(-50%);
   display: flex;
