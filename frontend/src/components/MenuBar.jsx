@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import bonsaiIcon from "../assets/bonsai-50.png"
+import batteryIcon from "../assets/battery.png"
 
 // macOS-style static top menu bar, ~12px tall
 export default function MenuBar() {
@@ -27,7 +28,10 @@ export default function MenuBar() {
         <img src={bonsaiIcon} alt="" className="mac-menubar-icon" />
         <span className="mac-menubar-title">Portfolio</span>
       </span>
-      <span className="mac-menubar-clock">{formattedDate} {formattedTime}</span>
+      <span className="mac-menubar-clock">
+        <img src={batteryIcon} alt="" className="mac-menubar-battery" />
+        {formattedDate} {formattedTime}
+      </span>
     </div>
   )
 }

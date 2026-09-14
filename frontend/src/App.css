@@ -959,7 +959,16 @@
 }
 
 .mac-menubar-clock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-variant-numeric: tabular-nums;
+}
+
+.mac-menubar-battery {
+  width: 20px;
+  height: auto;
+  object-fit: contain;
 }
 
 .mac-dock {
