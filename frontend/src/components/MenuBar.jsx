@@ -29,7 +29,10 @@ export default function MenuBar() {
         <span className="mac-menubar-title">Portfolio</span>
       </span>
       <span className="mac-menubar-clock">
-        <img src={batteryIcon} alt="" className="mac-menubar-battery" />
+        <span className="mac-menubar-battery-wrap">
+          <img src={batteryIcon} alt="" className="mac-menubar-battery" />
+          <span className="mac-menubar-battery-label">92%</span>
+        </span>
         {formattedDate} {formattedTime}
       </span>
     </div>
