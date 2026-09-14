@@ -11,6 +11,9 @@ import AdminDashboard from "./components/AdminDashboard"
 import AdminLogin from "./components/AdminLogin"
 import Desktop from "./components/Desktop"
 import MenuBar from "./components/MenuBar"
+import Dock from "./components/Dock"
+import Modal from "./components/Modal"
+import AboutContent from "./components/AboutContent"
 import "./App.css"
 
 
@@ -22,6 +25,7 @@ const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
 const [isModern, setIsModern] = useState(false)
 const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false)
+const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
 
 useEffect(() => {
   document.documentElement.dataset.theme = isModern ? "modern" : "retro"
@@ -99,7 +103,7 @@ useEffect(() => {
         <Route path="/" element={
           <>
             {isModern && <Desktop />}
-            <About/>
+            {!isModern && <About/>}
             {/* <Projects projects={projects} />*/}
 
             <section id="projects" className="panel projects-section">
@@ -133,6 +137,12 @@ useEffect(() => {
       </Routes>
       <AdminLogin isOpen={isAdminLoginOpen} onClose={() => setIsAdminLoginOpen(false)} />
       <Footer />
+      {isModern && <Dock onAboutClick={() => setIsAboutModalOpen(true)} />}
+      {isModern && (
+        <Modal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} title="About">
+          <AboutContent />
+        </Modal>
+      )}
       </div>
     </>
   )
