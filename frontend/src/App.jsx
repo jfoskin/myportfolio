@@ -7,7 +7,6 @@ import Contact from "./components/Contact"
 import LOL from "./components/LOL"
 import AdminDashboard from "./components/AdminDashboard"
 import AdminLogin from "./components/AdminLogin"
-import Desktop from "./components/Desktop"
 import MenuBar from "./components/MenuBar"
 import Dock from "./components/Dock"
 import Modal from "./components/Modal"
@@ -95,20 +94,21 @@ useEffect(() => {
 
   return (
     <>
-      {isModern && <MenuBar />}
+      {isModern && <MenuBar isModern={isModern} onThemeToggle={() => setIsModern(currentTheme => !currentTheme)} />}
 
       <div className="app">
-        <header >
-          <NavBar
-            isModern={isModern}
-            onThemeToggle={() => setIsModern(currentTheme => !currentTheme)}
-          />
-        </header>
+        {!isModern && (
+          <header >
+            <NavBar
+              isModern={isModern}
+              onThemeToggle={() => setIsModern(currentTheme => !currentTheme)}
+            />
+          </header>
+        )}
 
       <Routes>
         <Route path="/" element={
           <>
-            {isModern && <Desktop />}
             {!isModern && <About/>}
 
             {!isModern && (

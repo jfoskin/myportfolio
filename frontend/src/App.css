@@ -970,7 +970,23 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 5px;
+  margin: 0 8px;
+}
+
+.mac-menubar-old-computer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mac-menubar-old-computer-icon {
+  width: 20px;
+  height: auto;
+  object-fit: contain;
 }
 
 .mac-menubar-battery {
