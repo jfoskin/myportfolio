@@ -15,6 +15,7 @@ import AboutContent from "./components/AboutContent"
 import ProjectsContent from "./components/ProjectsContent"
 import SkillsContent from "./components/SkillsContent"
 import ContactContent from "./components/ContactContent"
+import LogsContent from "./components/LogsContent"
 import "./App.css"
 
 
@@ -30,6 +31,7 @@ const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
 const [isProjectsModalOpen, setIsProjectsModalOpen] = useState(false)
 const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false)
 const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+const [isLogsModalOpen, setIsLogsModalOpen] = useState(false)
 
 useEffect(() => {
   document.documentElement.dataset.theme = isModern ? "modern" : "retro"
@@ -133,7 +135,7 @@ useEffect(() => {
       </Routes>
       <AdminLogin isOpen={isAdminLoginOpen} onClose={() => setIsAdminLoginOpen(false)} />
       <Footer />
-      {isModern && <Dock onAboutClick={() => setIsAboutModalOpen(true)} onProjectsClick={() => setIsProjectsModalOpen(true)} onSkillsClick={() => setIsSkillsModalOpen(true)} onContactClick={() => setIsContactModalOpen(true)} />}
+      {isModern && <Dock onAboutClick={() => setIsAboutModalOpen(true)} onProjectsClick={() => setIsProjectsModalOpen(true)} onSkillsClick={() => setIsSkillsModalOpen(true)} onContactClick={() => setIsContactModalOpen(true)} onLogsClick={() => setIsLogsModalOpen(true)} />}
       {isModern && (
         <Modal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} title="About">
           <AboutContent />
@@ -152,6 +154,11 @@ useEffect(() => {
       {isModern && (
         <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} title="Contact">
           <ContactContent />
+        </Modal>
+      )}
+      {isModern && (
+        <Modal isOpen={isLogsModalOpen} onClose={() => setIsLogsModalOpen(false)} title="Logs">
+          <LogsContent />
         </Modal>
       )}
       </div>
