@@ -815,3 +815,118 @@
   box-shadow: 0 8px 20px rgba(45, 212, 191, 0.2);
 }
 
+/* Mac-desktop look for the modern theme */
+:root[data-theme='modern'] body {
+  background: linear-gradient(160deg, #1e2a5e 0%, #37356b 45%, #7b4397 100%);
+}
+
+.mac-menubar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: 28px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  background: rgba(20, 20, 25, 0.75);
+  backdrop-filter: blur(20px);
+  color: #f1f5f9;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+}
+
+.mac-menubar-title {
+  letter-spacing: 0.3px;
+}
+
+.mac-menubar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mac-menubar-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.mac-menubar-clock {
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-theme='modern'] .nav-panel {
+  position: sticky;
+  top: 16px;
+  z-index: 10;
+  padding-left: 76px;
+  backdrop-filter: blur(20px);
+  background: rgba(17, 24, 32, 0.55);
+}
+
+:root[data-theme='modern'] .nav-panel::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 20px 0 0 #febc2e, 40px 0 0 #28c840;
+}
+
+.desktop-icons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 24px 8px;
+  max-height: 420px;
+  padding: 4px 4px 28px;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 84px;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #f1f5f9;
+  text-align: center;
+  transition: background 0.15s;
+}
+
+.desktop-icon:hover,
+.desktop-icon:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+.desktop-icon-glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  font-size: 28px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.desktop-icon-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+
