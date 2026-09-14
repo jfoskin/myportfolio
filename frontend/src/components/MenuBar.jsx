@@ -10,6 +10,12 @@ export default function MenuBar() {
     return () => clearInterval(timerId)
   }, [])
 
+  const formattedDate = time.toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  }).replace(",", "")
+
   const formattedTime = time.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
@@ -21,7 +27,7 @@ export default function MenuBar() {
         <img src={bonsaiIcon} alt="" className="mac-menubar-icon" />
         <span className="mac-menubar-title">Portfolio</span>
       </span>
-      <span className="mac-menubar-clock">{formattedTime}</span>
+      <span className="mac-menubar-clock">{formattedDate} {formattedTime}</span>
     </div>
   )
 }
