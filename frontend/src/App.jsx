@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react"
 import { Route, Routes } from "react-router-dom"
-import Skills from "./components/Skills"
 import Footer from "./components/Footer"
 import NavBar from "./components/NavBar"
 import About from "./components/About"
 import Contact from "./components/Contact" 
-import Projects from "./components/Projects"
 import LOL from "./components/LOL"
 import AdminDashboard from "./components/AdminDashboard"
 import AdminLogin from "./components/AdminLogin"
@@ -14,6 +12,9 @@ import MenuBar from "./components/MenuBar"
 import Dock from "./components/Dock"
 import Modal from "./components/Modal"
 import AboutContent from "./components/AboutContent"
+import ProjectsContent from "./components/ProjectsContent"
+import SkillsContent from "./components/SkillsContent"
+import ContactContent from "./components/ContactContent"
 import "./App.css"
 
 
@@ -26,6 +27,9 @@ const [error, setError] = useState(null)
 const [isModern, setIsModern] = useState(false)
 const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false)
 const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
+const [isProjectsModalOpen, setIsProjectsModalOpen] = useState(false)
+const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false)
+const [isContactModalOpen, setIsContactModalOpen] = useState(false)
 
 useEffect(() => {
   document.documentElement.dataset.theme = isModern ? "modern" : "retro"
@@ -104,32 +108,24 @@ useEffect(() => {
           <>
             {isModern && <Desktop />}
             {!isModern && <About/>}
-            {/* <Projects projects={projects} />*/}
 
-            <section id="projects" className="panel projects-section">
-              <h2>Projects</h2>
-               {loading && <p className="status-text">Loading...</p>}
-              <div className="projects-grid">
-                {projects.map(project => (
-                  <Projects key={project._id} project={project} />
-                ))}
-              </div>
-            </section>
+            {!isModern && (
+              <section id="projects" className="panel projects-section">
+                <h2>Projects</h2>
+                <ProjectsContent projects={projects} loading={loading} error={error} />
+              </section>
+            )}
 
-            <section id="skills" className="panel skills-section">
-              <h2>Skills</h2>
-              {loading && <p className="status-text">Loading...</p>}
-              {error && <p className="status-text">Error: {error}</p>}
-              <div className="skills-grid">
-                {skills.map(skill => (
-                  <Skills key={skill._id} skill={skill} />
-                ))}
-              </div>
-            </section>
+            {!isModern && (
+              <section id="skills" className="panel skills-section">
+                <h2>Skills</h2>
+                <SkillsContent skills={skills} loading={loading} error={error} />
+              </section>
+            )}
 
          
 
-            <Contact/>
+            {!isModern && <Contact/>}
           </>
         } />
         <Route path="/lol" element={<LOL isModern={isModern} />} />
@@ -137,10 +133,25 @@ useEffect(() => {
       </Routes>
       <AdminLogin isOpen={isAdminLoginOpen} onClose={() => setIsAdminLoginOpen(false)} />
       <Footer />
-      {isModern && <Dock onAboutClick={() => setIsAboutModalOpen(true)} />}
+      {isModern && <Dock onAboutClick={() => setIsAboutModalOpen(true)} onProjectsClick={() => setIsProjectsModalOpen(true)} onSkillsClick={() => setIsSkillsModalOpen(true)} onContactClick={() => setIsContactModalOpen(true)} />}
       {isModern && (
         <Modal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} title="About">
           <AboutContent />
+        </Modal>
+      )}
+      {isModern && (
+        <Modal isOpen={isProjectsModalOpen} onClose={() => setIsProjectsModalOpen(false)} title="Projects">
+          <ProjectsContent projects={projects} loading={loading} error={error} />
+        </Modal>
+      )}
+      {isModern && (
+        <Modal isOpen={isSkillsModalOpen} onClose={() => setIsSkillsModalOpen(false)} title="Skills">
+          <SkillsContent skills={skills} loading={loading} error={error} />
+        </Modal>
+      )}
+      {isModern && (
+        <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} title="Contact">
+          <ContactContent />
         </Modal>
       )}
       </div>
