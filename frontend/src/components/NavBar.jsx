@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import newComputerIcon from "../assets/newscreen.png"
 
 export default function NavBar({ isModern, onThemeToggle }) {
   return (
@@ -19,8 +20,12 @@ export default function NavBar({ isModern, onThemeToggle }) {
         type="button"
         onClick={onThemeToggle}
         aria-pressed={isModern}
+        aria-label={isModern ? "Switch to retro look" : "Switch to modern look"}
+        title={isModern ? "Switch to retro look" : "Switch to modern look"}
       >
-        {isModern ? "Retro" : "Modern"}
+        {isModern
+          ? "Retro"
+          : <img src={newComputerIcon} alt="" className="theme-toggle-icon" />}
       </button>
      
       </nav>
