@@ -1035,60 +1035,56 @@
   color: #000;
 }
 
-.mac-dock {
+.desktop-icons {
   position: fixed;
-  left: 50%;
-  bottom: 5px;
-  z-index: 20;
-  transform: translateX(-50%);
+  top: 56px;
+  left: 20px;
+  z-index: 5;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: 500px;
-  height: 50px;
-  box-sizing: border-box;
-  padding: 0 20px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--chrome-bg);
-  backdrop-filter: blur(12px);
+  flex-direction: column;
+  gap: 12px;
 }
 
-.dock-icon {
+.desktop-icon {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: none;
-  border-radius: 10px;
+  gap: 6px;
+  width: 84px;
+  padding: 8px 4px;
+  border: 1px solid transparent;
+  border-radius: 8px;
   background: none;
+  color: var(--text-h);
+  font: inherit;
   cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.15s;
 }
 
-.dock-icon:hover,
-.dock-icon:focus-visible {
-  transform: translateY(-4px);
+.desktop-icon:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
 }
 
-.dock-icon:focus-visible {
+.desktop-icon:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-.dock-icon-glyph {
-  font-size: 22px;
-  line-height: 1;
+.desktop-icon-image {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 
-.dock-icon-image {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
+.desktop-icon-glyph {
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.desktop-icon-label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 :root[data-theme='modern'] .nav-panel {
