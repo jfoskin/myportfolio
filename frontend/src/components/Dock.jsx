@@ -1,12 +1,13 @@
 import documentIcon from "../assets/document-icon.png"
 import projectIcon from "../assets/project-icon.png"
+import skillIcon from "../assets/level-icon.png"
 
 // Static placeholder dock mirroring the nav bar links, mac desktop style.
 // Use `image` for an imported asset, or `icon` for an emoji.
 const dockItems = [
   { key: "about", label: "About", image: documentIcon },
   { key: "projects", label: "Projects", icon: projectIcon },
-  { key: "skills", label: "Skills", icon: "🛠️" },
+  { key: "skills", label: "Skills", icon: skillIcon },
   { key: "logs", label: "Logs", icon: "📓" },
   { key: "contact", label: "Contact", icon: "✉️" },
 ]
