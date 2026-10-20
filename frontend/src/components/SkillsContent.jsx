@@ -1,4 +1,4 @@
-import Skills from "./Skills"
+import SkillCard from "./SkillCard"
 
 export default function SkillsContent({ skills, loading, error }) {
   return (
@@ -7,7 +7,7 @@ export default function SkillsContent({ skills, loading, error }) {
       {error && <p className="status-text">Error: {error}</p>}
       <div className="skills-grid">
         {skills.map(skill => (
-          <Skills key={skill._id} skill={skill} />
+          <SkillCard key={skill._id} skill={skill} />
         ))}
       </div>
     </>

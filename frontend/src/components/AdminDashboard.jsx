@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom"
 const emptyForm = { title: "", github: "", description: "", url: "", image: "" }
 const emptyEntryForm = { title: "", summary: "", tags: "" }
 
+const fetchJson = async (path, errorMessage) => {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}${path}`)
+  if (!response.ok) throw new Error(errorMessage)
+  return response.json()
+}
+
 export default function AdminDashboard() {
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
@@ -26,31 +32,15 @@ export default function AdminDashboard() {
     Authorization: `Bearer ${token}`,
   }
 
-  const loadProjects = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/projects`)
-      if (!response.ok) throw new Error("Failed to load projects")
-      const data = await response.json()
-      setProjects(data)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
+  const loadProjects = () =>
+    fetchJson("/projects", "Failed to load projects")
+      .then(setProjects, err => setError(err.message))
+      .finally(() => setLoading(false))
 
-  const loadEntries = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/entries`)
-      if (!response.ok) throw new Error("Failed to load entries")
-      const data = await response.json()
-      setEntries(data)
-    } catch (err) {
-      setEntryError(err.message)
-    } finally {
-      setEntriesLoading(false)
-    }
-  }
+  const loadEntries = () =>
+    fetchJson("/entries", "Failed to load entries")
+      .then(setEntries, err => setEntryError(err.message))
+      .finally(() => setEntriesLoading(false))
 
   useEffect(() => {
     if (!token) {

@@ -1,31 +1,26 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
+// Only mount the form while open so its state starts fresh each time
 export default function AdminLogin({ isOpen, onClose }) {
+  if (!isOpen) return null
+  return <AdminLoginForm onClose={onClose} />
+}
+
+function AdminLoginForm({ onClose }) {
   const [password, setPassword] = useState("")
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isOpen) {
-      setPassword("")
-      setError(null)
-    }
-  }, [isOpen])
-
-  useEffect(() => {
-    if (!isOpen) return
-
     const handleKeyDown = (event) => {
       if (event.key === "Escape") onClose()
     }
 
     document.addEventListener("keydown", handleKeyDown)
     return () => document.removeEventListener("keydown", handleKeyDown)
-  }, [isOpen, onClose])
-
-  if (!isOpen) return null
+  }, [onClose])
 
   const handleSubmit = async (event) => {
     event.preventDefault()

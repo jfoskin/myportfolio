@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { Route, Routes } from "react-router-dom"
 import Footer from "./components/Footer"
 import NavBar from "./components/NavBar"
-import About from "./components/About"
 import Contact from "./components/Contact" 
 import LOL from "./components/LOL"
 import AdminDashboard from "./components/AdminDashboard"
@@ -109,7 +108,12 @@ useEffect(() => {
       <Routes>
         <Route path="/" element={
           <>
-            {!isModern && <About/>}
+            {!isModern && (
+              <section id="about" className="panel about-section">
+                <h2>About</h2>
+                <AboutContent />
+              </section>
+            )}
 
             {!isModern && (
               <section id="projects" className="panel projects-section">
