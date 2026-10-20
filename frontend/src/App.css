@@ -1042,16 +1042,23 @@
   justify-content: center;
   width: 36px;
   height: 36px;
+  padding: 0;
+  border: none;
   border-radius: 10px;
+  background: none;
+  cursor: pointer;
   text-decoration: none;
-  transition: background 0.15s, transform 0.15s;
+  transition: transform 0.15s;
 }
 
 .dock-icon:hover,
 .dock-icon:focus-visible {
-  background: rgba(255, 255, 255, 0.2);
   transform: translateY(-4px);
-  outline: none;
+}
+
+.dock-icon:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
 }
 
 .dock-icon-glyph {

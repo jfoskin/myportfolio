@@ -6,8 +6,8 @@ import skillIcon from "../assets/level-icon.png"
 // Use `image` for an imported asset, or `icon` for an emoji.
 const dockItems = [
   { key: "about", label: "About", image: documentIcon },
-  { key: "projects", label: "Projects", icon: projectIcon },
-  { key: "skills", label: "Skills", icon: skillIcon },
+  { key: "projects", label: "Projects", image: projectIcon },
+  { key: "skills", label: "Skills", image: skillIcon },
   { key: "logs", label: "Logs", icon: "📓" },
   { key: "contact", label: "Contact", icon: "✉️" },
 ]
