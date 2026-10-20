@@ -1076,11 +1076,6 @@
   object-fit: contain;
 }
 
-.desktop-icon-glyph {
-  font-size: 40px;
-  line-height: 48px;
-}
-
 .desktop-icon-label {
   font-size: 13px;
   font-weight: 600;
