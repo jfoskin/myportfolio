@@ -1059,6 +1059,12 @@
   line-height: 1;
 }
 
+.dock-icon-image {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
 :root[data-theme='modern'] .nav-panel {
   position: sticky;
   top: 16px;
