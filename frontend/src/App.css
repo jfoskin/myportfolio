@@ -748,7 +748,7 @@
   align-items: center;
   gap: 20px;
   padding: 8px 0 20px;
-  border-bottom: 2px solid #1d69a8;
+  border-bottom: 2px solid var(--accent-2);
 }
 
 :root[data-theme='modern'] .lol-heading h3 {
@@ -760,7 +760,7 @@
   width: 16px;
   height: 16px;
   flex: 0 0 auto;
-  border: 2px solid #60a5fa;
+  border: 2px solid var(--accent-2);
 }
 
 :root[data-theme='modern'] .entry-card:nth-child(3n+1) .entry-square,
@@ -791,8 +791,8 @@
   margin-left: auto;
   padding: 6px 18px;
   border-radius: 999px;
-  background: #3a2100;
-  color: #f59e0b;
+  background: var(--accent-bg);
+  color: var(--accent);
   font-weight: 700;
   text-transform: lowercase;
 }
@@ -805,9 +805,9 @@
 
 :root[data-theme='modern'] .entry-card {
   padding: 28px 32px;
-  border: 1px solid #343a40;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #171a1d;
+  background: var(--code-bg);
 }
 
 :root[data-theme='modern'] .entry-title {
@@ -819,7 +819,7 @@
 }
 
 :root[data-theme='modern'] .entry-summary {
-  color: #d1d5db;
+  color: var(--text);
   font-size: 17px;
   line-height: 1.65;
 }
@@ -841,14 +841,14 @@
 :root[data-theme='modern'] .entry-tag {
   padding: 4px 14px;
   border-radius: 999px;
-  background: #06396b;
-  color: #7dbbff;
+  background: var(--accent-2-bg);
+  color: var(--accent-2);
   font-weight: 700;
 }
 
 :root[data-theme='modern'] .entry-date {
   flex: 0 0 auto;
-  color: #9ca3af;
+  color: var(--text-muted);
   font-weight: 600;
   text-transform: lowercase;
 }
@@ -923,12 +923,16 @@
 
 :root[data-theme='modern'] .email-compose-footer button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(45, 212, 191, 0.2);
+  box-shadow: 0 8px 20px var(--accent-bg);
 }
 
 /* Mac-desktop look for the modern theme */
 :root[data-theme='modern'] body {
-  background: linear-gradient(160deg, #1e2a5e 0%, #37356b 45%, #7b4397 100%);
+  background:
+    radial-gradient(circle at 15% 20%, var(--accent-bg), transparent 45%),
+    radial-gradient(circle at 85% 85%, var(--accent-2-bg), transparent 50%),
+    var(--bg);
+  background-attachment: fixed;
 }
 
 .mac-menubar {
@@ -944,9 +948,10 @@
   height: 36px;
   padding: 0 20px;
   box-sizing: border-box;
-  background: rgba(20, 20, 25, 0.75);
+  background: var(--chrome-bg);
   backdrop-filter: blur(20px);
-  color: #f1f5f9;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-h);
   font-size: 15px;
   font-weight: 600;
   line-height: 18px;
@@ -993,6 +998,19 @@
   cursor: pointer;
 }
 
+.mac-menubar-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .mac-menubar-old-computer-icon {
   width: 20px;
   height: auto;
@@ -1031,8 +1049,9 @@
   height: 50px;
   box-sizing: border-box;
   padding: 0 20px;
+  border: 1px solid var(--border);
   border-radius: 16px;
-  background: rgba(37, 99, 235, 0.5);
+  background: var(--chrome-bg);
   backdrop-filter: blur(12px);
 }
 
@@ -1057,7 +1076,7 @@
 }
 
 .dock-icon:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -1078,7 +1097,7 @@
   z-index: 10;
   padding-left: 76px;
   backdrop-filter: blur(20px);
-  background: rgba(17, 24, 32, 0.55);
+  background: var(--chrome-bg);
 }
 
 :root[data-theme='modern'] .nav-panel::before {

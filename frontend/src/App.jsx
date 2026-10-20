@@ -24,6 +24,7 @@ const [projects,setProjects] = useState([])
 const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
 const [isModern, setIsModern] = useState(true)
+const [isDark, setIsDark] = useState(true)
 const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false)
 const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
 const [isProjectsModalOpen, setIsProjectsModalOpen] = useState(false)
@@ -34,6 +35,10 @@ const [isLogsModalOpen, setIsLogsModalOpen] = useState(false)
 useEffect(() => {
   document.documentElement.dataset.theme = isModern ? "modern" : "retro"
 }, [isModern])
+
+useEffect(() => {
+  document.documentElement.dataset.mode = isDark ? "dark" : "light"
+}, [isDark])
 
 // Ctrl/Cmd + Shift + L opens the hidden admin login modal
 useEffect(() => {
@@ -93,7 +98,7 @@ useEffect(() => {
 
   return (
     <>
-      {isModern && <MenuBar isModern={isModern} onThemeToggle={() => setIsModern(currentTheme => !currentTheme)} />}
+      {isModern && <MenuBar isModern={isModern} onThemeToggle={() => setIsModern(currentTheme => !currentTheme)} isDark={isDark} onModeToggle={() => setIsDark(currentMode => !currentMode)} />}
 
       <div className="app">
         {!isModern && (

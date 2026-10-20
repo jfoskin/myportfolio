@@ -35,23 +35,50 @@
 }
 
 :root[data-theme='modern'] {
-  --text: #b8c2cc;
-  --text-h: #f8fafc;
-  --bg: #090d12;
-  --panel-bg: rgba(17, 24, 32, 0.9);
-  --border: #293442;
-  --border-soft: rgba(226, 232, 240, 0.14);
-  --code-bg: #151d27;
-  --accent: #2dd4bf;
-  --accent-bg: rgba(45, 212, 191, 0.1);
-  --accent-border: rgba(45, 212, 191, 0.45);
-  --social-bg: rgba(248, 250, 252, 0.07);
+  /* Dark (default) */
+  --text: #f2e9dc;
+  --text-h: #f2e9dc;
+  --text-muted: rgba(242, 233, 220, 0.62);
+  --bg: #1e1b2e;
+  --panel-bg: #2a2640;
+  --chrome-bg: rgba(42, 38, 64, 0.78);
+  --border: rgba(242, 233, 220, 0.14);
+  --border-soft: rgba(242, 233, 220, 0.1);
+  --code-bg: #231f37;
+  --accent: #ff8fa3;
+  --accent-bg: rgba(255, 143, 163, 0.12);
+  --accent-border: rgba(255, 143, 163, 0.45);
+  --accent-2: #7fd1c7;
+  --accent-2-bg: rgba(127, 209, 199, 0.14);
+  --social-bg: rgba(242, 233, 220, 0.07);
   --heading: 'Avenir Next', 'Segoe UI', sans-serif;
   --mono: 'Avenir Next', 'Segoe UI', sans-serif;
-  --pixel-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-  --pixel-shadow-accent: 0 16px 36px rgba(0, 127, 115, 0.14);
+  --pixel-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  --pixel-shadow-accent: 0 16px 36px rgba(255, 143, 163, 0.16);
 
   color-scheme: dark;
+}
+
+:root[data-theme='modern'][data-mode='light'] {
+  --text: #1e1b2e;
+  --text-h: #1e1b2e;
+  --text-muted: rgba(30, 27, 46, 0.62);
+  --bg: #f6efe3;
+  --panel-bg: #fff8ee;
+  --chrome-bg: rgba(255, 248, 238, 0.78);
+  --border: rgba(30, 27, 46, 0.14);
+  --border-soft: rgba(30, 27, 46, 0.1);
+  --code-bg: #fbf3e7;
+  --accent: #b0305a;
+  --accent-bg: rgba(176, 48, 90, 0.1);
+  --accent-border: rgba(176, 48, 90, 0.4);
+  --accent-2: #1f6f68;
+  --accent-2-bg: rgba(31, 111, 104, 0.12);
+  --social-bg: rgba(30, 27, 46, 0.05);
+  --pixel-shadow: 0 12px 32px rgba(30, 27, 46, 0.08);
+  --pixel-shadow-accent: 0 16px 36px rgba(176, 48, 90, 0.14);
+
+  color-scheme: light;
 }
 
 body {

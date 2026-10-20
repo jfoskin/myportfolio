@@ -4,7 +4,7 @@ import batteryIcon from "../assets/battery.png"
 import oldComputerIcon from "../assets/old-computer.png"
 
 // macOS-style static top menu bar, ~12px tall
-export default function MenuBar({ onThemeToggle }) {
+export default function MenuBar({ onThemeToggle, isDark, onModeToggle }) {
   const [time, setTime] = useState(new Date())
 
   useEffect(() => {
@@ -30,6 +30,15 @@ export default function MenuBar({ onThemeToggle }) {
         <span className="mac-menubar-title">Portfolio</span>
       </span>
       <span className="mac-menubar-clock">
+        <button
+          type="button"
+          className="mac-menubar-mode-toggle"
+          onClick={onModeToggle}
+          aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          <span aria-hidden="true">{isDark ? "☀︎" : "☾"}</span>
+        </button>
         <button
           type="button"
           className="mac-menubar-old-computer"
