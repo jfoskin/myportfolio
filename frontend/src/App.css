@@ -83,6 +83,28 @@
   margin: 0;
 }
 
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.about-image {
+  flex: 0 0 auto;
+  width: 460px;
+  height: auto;
+}
+
+.about-content p {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .about-content {
+    flex-direction: column;
+  }
+}
+
 .skills-section h2 {
   margin: 0 0 24px;
 }
