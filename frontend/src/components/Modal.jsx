@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 // Generic mac-window style modal: traffic lights, overlay click, escape to close
-export default function Modal({ isOpen, onClose, title, children }) {
+export default function Modal({ isOpen, onClose, title, className = "", children }) {
   useEffect(() => {
     if (!isOpen) return
 
@@ -17,7 +17,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="panel modal-window" onClick={(event) => event.stopPropagation()}>
+      <div className={`panel modal-window ${className}`} onClick={(event) => event.stopPropagation()}>
         <div className="modal-traffic-lights">
           <button
             type="button"

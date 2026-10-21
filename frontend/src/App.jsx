@@ -146,7 +146,7 @@ useEffect(() => {
       {!isModern && <Footer />}
       {isModern && <DesktopIcons onAboutClick={() => setIsAboutModalOpen(true)} onProjectsClick={() => setIsProjectsModalOpen(true)} onSkillsClick={() => setIsSkillsModalOpen(true)} onContactClick={() => setIsContactModalOpen(true)} onLogsClick={() => setIsLogsModalOpen(true)} />}
       {isModern && (
-        <Modal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} title="About">
+        <Modal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} title="About" className="about-modal">
           <AboutContent />
         </Modal>
       )}
