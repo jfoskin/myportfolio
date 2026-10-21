@@ -1,8 +1,10 @@
-function SkillCard({ skill }) {
+import { withIconColor } from "../utils/iconColor"
+
+function SkillCard({ skill, iconColor }) {
   return (
     <div className="skill-card">
         <p>{skill.name}</p>
-        <img src={skill.image} alt={skill.name} />
+        <img src={withIconColor(skill.image, iconColor)} alt={skill.name} />
     </div>
   )
 }

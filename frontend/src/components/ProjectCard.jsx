@@ -1,6 +1,7 @@
 import placeholderImage from "../assets/windowsDesktop.png"
+import { withIconColor } from "../utils/iconColor"
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, iconColor }) {
   return (
     <div className="project-card">
         <img className="project-image" src={project.image || placeholderImage} alt={`${project.title} preview`} />
@@ -8,11 +9,11 @@ export default function ProjectCard({ project }) {
         <p className="project-description">{project.description}</p>
         <div className="project-links">
           <a href={project.github} target="_blank" rel="noreferrer">
-            <img src="https://img.icons8.com/?size=100&id=WCL5hPLvhUjQ&format=png&color=f5f4ef" alt="github logo" />
+            <img src={withIconColor("https://img.icons8.com/?size=100&id=WCL5hPLvhUjQ&format=png", iconColor)} alt="github logo" />
             GitHub
           </a>
           <a href={project.url} target="_blank" rel="noreferrer">
-            <img src="https://img.icons8.com/?size=100&id=9918&format=png&color=000000" alt="live site logo" />
+            <img src={withIconColor("https://img.icons8.com/?size=100&id=9918&format=png", iconColor)} alt="live site logo" />
             Live Site
           </a>
         </div>

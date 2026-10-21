@@ -14,6 +14,7 @@ import ProjectsContent from "./components/ProjectsContent"
 import SkillsContent from "./components/SkillsContent"
 import ContactContent from "./components/ContactContent"
 import LogsContent from "./components/LogsContent"
+import { ICON_COLORS } from "./utils/iconColor"
 import "./App.css"
 
 
@@ -40,6 +41,8 @@ const menuBarTitle =
   (isContactModalOpen && "Contact") ||
   (isLogsModalOpen && "Logs") ||
   "Portfolio"
+
+const iconColor = !isModern ? ICON_COLORS.retro : isDark ? ICON_COLORS.dark : ICON_COLORS.light
 
 useEffect(() => {
   document.documentElement.dataset.theme = isModern ? "modern" : "retro"
@@ -132,14 +135,14 @@ useEffect(() => {
             {!isModern && (
               <section id="projects" className="panel projects-section">
                 <h2>Projects</h2>
-                <ProjectsContent projects={projects} loading={loading} error={error} />
+                <ProjectsContent projects={projects} loading={loading} error={error} iconColor={iconColor} />
               </section>
             )}
 
             {!isModern && (
               <section id="skills" className="panel skills-section">
                 <h2>Skills</h2>
-                <SkillsContent skills={skills} loading={loading} error={error} />
+                <SkillsContent skills={skills} loading={loading} error={error} iconColor={iconColor} />
               </section>
             )}
 
@@ -161,12 +164,12 @@ useEffect(() => {
       )}
       {isModern && (
         <Modal isOpen={isProjectsModalOpen} onClose={() => setIsProjectsModalOpen(false)} title="Projects">
-          <ProjectsContent projects={projects} loading={loading} error={error} />
+          <ProjectsContent projects={projects} loading={loading} error={error} iconColor={iconColor} />
         </Modal>
       )}
       {isModern && (
         <Modal isOpen={isSkillsModalOpen} onClose={() => setIsSkillsModalOpen(false)} title="Skills">
-          <SkillsContent skills={skills} loading={loading} error={error} />
+          <SkillsContent skills={skills} loading={loading} error={error} iconColor={iconColor} />
         </Modal>
       )}
       {isModern && (
