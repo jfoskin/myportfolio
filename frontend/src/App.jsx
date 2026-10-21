@@ -15,15 +15,14 @@ import SkillsContent from "./components/SkillsContent"
 import ContactContent from "./components/ContactContent"
 import LogsContent from "./components/LogsContent"
 import { ICON_COLORS } from "./utils/iconColor"
+import useFetch from "./hooks/useFetch"
 import "./App.css"
 
 
 function App() {
 
-const [skills,setSkills] = useState([])
-const [projects,setProjects] = useState([])
-const [loading, setLoading] = useState(true)
-const [error, setError] = useState(null)
+const projectsRequest = useFetch("/projects")
+const skillsRequest = useFetch("/skills")
 const [isModern, setIsModern] = useState(true)
 const [isDark, setIsDark] = useState(true)
 const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false)
@@ -66,48 +65,6 @@ useEffect(() => {
   return () => document.removeEventListener("keydown", handleKeyDown)
 }, [])
 
-useEffect(() => {
-  const getProjects = async () => {
-    try {
-      const projectsResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/projects`)
-      if (!projectsResponse.ok) throw new Error(`Failed to fetch projects: ${projectsResponse.status} ${projectsResponse.statusText}`)
-        const projectsData = await projectsResponse.json()
-      setProjects(projectsData)
-      setLoading(false)
-    } catch (error) {
-      console.log(`Error while trying to get projects`, error)
-      setError(error.message)
-    }
-  }
-  
-  const getSkills = async () => {
-    try {
-
-      const skillsResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/skills`)
-
-      if (!skillsResponse.ok) throw new Error(`Failed to fetch skills: ${skillsResponse.status} ${skillsResponse.statusText}`)
-
-      const skillsData = await skillsResponse.json()
-
-      setSkills(skillsData)
-      setLoading(false)
-
-    }catch (error) {
-      console.log(`Error while trying to get skills`, error)
-      setError(error.message)
-    }
- 
-  }
-
-  
-
-  getProjects()
-  getSkills()
- 
-
-
-},[])
-
   return (
     <>
       {isModern && <MenuBar title={menuBarTitle} isModern={isModern}onThemeToggle={() => setIsModern(currentTheme => !currentTheme)} isDark={isDark} onModeToggle={() => setIsDark(currentMode => !currentMode)} />}
@@ -135,14 +92,14 @@ useEffect(() => {
             {!isModern && (
               <section id="projects" className="panel projects-section">
                 <h2>Projects</h2>
-                <ProjectsContent projects={projects} loading={loading} error={error} iconColor={iconColor} />
+                <ProjectsContent request={projectsRequest} iconColor={iconColor} />
               </section>
             )}
 
             {!isModern && (
               <section id="skills" className="panel skills-section">
                 <h2>Skills</h2>
-                <SkillsContent skills={skills} loading={loading} error={error} iconColor={iconColor} />
+                <SkillsContent request={skillsRequest} iconColor={iconColor} />
               </section>
             )}
 
@@ -164,12 +121,12 @@ useEffect(() => {
       )}
       {isModern && (
         <Modal isOpen={isProjectsModalOpen} onClose={() => setIsProjectsModalOpen(false)} title="Projects">
-          <ProjectsContent projects={projects} loading={loading} error={error} iconColor={iconColor} />
+          <ProjectsContent request={projectsRequest} iconColor={iconColor} />
         </Modal>
       )}
       {isModern && (
         <Modal isOpen={isSkillsModalOpen} onClose={() => setIsSkillsModalOpen(false)} title="Skills">
-          <SkillsContent skills={skills} loading={loading} error={error} iconColor={iconColor} />
+          <SkillsContent request={skillsRequest} iconColor={iconColor} />
         </Modal>
       )}
       {isModern && (

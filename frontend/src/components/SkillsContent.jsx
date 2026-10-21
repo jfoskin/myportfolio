@@ -1,15 +1,25 @@
 import SkillCard from "./SkillCard"
+import FetchStatus from "./FetchStatus"
 
-export default function SkillsContent({ skills, loading, error, iconColor }) {
+export default function SkillsContent({ request, iconColor }) {
+  const skills = request.data ?? []
+
   return (
     <>
-      {loading && <p className="status-text">Loading...</p>}
-      {error && <p className="status-text">Error: {error}</p>}
-      <div className="skills-grid">
-        {skills.map(skill => (
-          <SkillCard key={skill._id} skill={skill} iconColor={iconColor} />
-        ))}
-      </div>
+      <FetchStatus
+        label="skills"
+        loading={request.loading}
+        error={request.error}
+        onRetry={request.retry}
+        isEmpty={skills.length === 0}
+      />
+      {skills.length > 0 && (
+        <div className="skills-grid">
+          {skills.map(skill => (
+            <SkillCard key={skill._id} skill={skill} iconColor={iconColor} />
+          ))}
+        </div>
+      )}
     </>
   )
 }

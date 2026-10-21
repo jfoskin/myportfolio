@@ -1,37 +1,12 @@
-import { useEffect, useState } from "react"
-
+import useFetch from "../hooks/useFetch"
+import FetchStatus from "./FetchStatus"
 
 function LOL({ isModern }) {
+  const request = useFetch("/entries")
+  const entries = [...(request.data ?? [])].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  )
 
-    const [entries,setEntries] = useState([])
-    const [loading,setLoading] = useState(true)
-    const [error, setError] = useState(null)
-
-    useEffect(()=>{
-        const getEntries = async ()=>{
-            try {
-                const entryResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/entries`)
-
-                 if (!entryResponse.ok) throw new Error(`Failed to fetch entries: ${entryResponse.status} ${entryResponse.statusText}`)
-
-                const entriesData =  await entryResponse.json()
-
-                const sortedEntries = entriesData.sort(
-                    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-                )
-
-                setEntries(sortedEntries)
-            } catch (error) {
-                setError(error.message)
-            }finally{
-                setLoading(false)
-            }
-
-        
-    }
-    getEntries()
-    },[])
-    
   return (
     <main className="panel lol-section">
       <div className="lol-heading">
@@ -40,8 +15,13 @@ function LOL({ isModern }) {
         <span className="lol-status">Under construction</span>
       </div>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
+      <FetchStatus
+        label="log entries"
+        loading={request.loading}
+        error={request.error}
+        onRetry={request.retry}
+        isEmpty={entries.length === 0}
+      />
 
       <div className="entry-list">
         {entries.map((entry) => {
