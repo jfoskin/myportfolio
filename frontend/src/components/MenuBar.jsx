@@ -4,7 +4,7 @@ import batteryIcon from "../assets/battery.png"
 import oldComputerIcon from "../assets/old-computer.png"
 
 // macOS-style static top menu bar, ~12px tall
-export default function MenuBar({ onThemeToggle, isDark, onModeToggle }) {
+export default function MenuBar({ title = "Portfolio", onThemeToggle, isDark, onModeToggle }) {
   const [time, setTime] = useState(new Date())
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function MenuBar({ onThemeToggle, isDark, onModeToggle }) {
     <div className="mac-menubar">
       <span className="mac-menubar-brand">
         <img src={bonsaiIcon} alt="" className="mac-menubar-icon" />
-        <span className="mac-menubar-title">Portfolio</span>
+        <span className="mac-menubar-title">{title}</span>
       </span>
       <span className="mac-menubar-clock">
         <button

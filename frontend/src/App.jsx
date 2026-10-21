@@ -32,6 +32,15 @@ const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false)
 const [isContactModalOpen, setIsContactModalOpen] = useState(false)
 const [isLogsModalOpen, setIsLogsModalOpen] = useState(false)
 
+// Menu bar title follows the open window, like the active app name on macOS
+const menuBarTitle =
+  (isAboutModalOpen && "About") ||
+  (isProjectsModalOpen && "Projects") ||
+  (isSkillsModalOpen && "Skills") ||
+  (isContactModalOpen && "Contact") ||
+  (isLogsModalOpen && "Logs") ||
+  "Portfolio"
+
 useEffect(() => {
   document.documentElement.dataset.theme = isModern ? "modern" : "retro"
 }, [isModern])
@@ -98,7 +107,7 @@ useEffect(() => {
 
   return (
     <>
-      {isModern && <MenuBar isModern={isModern} onThemeToggle={() => setIsModern(currentTheme => !currentTheme)} isDark={isDark} onModeToggle={() => setIsDark(currentMode => !currentMode)} />}
+      {isModern && <MenuBar title={menuBarTitle} isModern={isModern}onThemeToggle={() => setIsModern(currentTheme => !currentTheme)} isDark={isDark} onModeToggle={() => setIsDark(currentMode => !currentMode)} />}
 
       <div className="app">
         {!isModern && (
