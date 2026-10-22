@@ -18,28 +18,33 @@ export default function Modal({ isOpen, onClose, title, className = "", children
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className={`panel modal-window ${className}`} onClick={(event) => event.stopPropagation()}>
-        <div className="modal-traffic-lights">
-          <button
-            type="button"
-            className="traffic-light traffic-light-red"
-            onClick={onClose}
-            aria-label={`Close ${title ?? "modal"}`}
-          />
-          <button
-            type="button"
-            className="traffic-light traffic-light-yellow"
-            aria-label={`Minimize ${title ?? "modal"}`}
-          />
-          <button
-            type="button"
-            className="traffic-light traffic-light-green"
-            aria-label={`Maximize ${title ?? "modal"}`}
-          />
+        {/* Title bar stays put while the body scrolls, so close is always reachable */}
+        <div className="modal-titlebar">
+          <div className="modal-traffic-lights">
+            <button
+              type="button"
+              className="traffic-light traffic-light-red"
+              onClick={onClose}
+              aria-label={`Close ${title ?? "modal"}`}
+            />
+            <button
+              type="button"
+              className="traffic-light traffic-light-yellow"
+              aria-label={`Minimize ${title ?? "modal"}`}
+            />
+            <button
+              type="button"
+              className="traffic-light traffic-light-green"
+              aria-label={`Maximize ${title ?? "modal"}`}
+            />
+          </div>
         </div>
 
-        {title && <h2>{title}</h2>}
+        <div className="modal-body">
+          {title && <h2>{title}</h2>}
 
-        {children}
+          {children}
+        </div>
       </div>
     </div>
   )
