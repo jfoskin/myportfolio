@@ -363,7 +363,8 @@
   opacity: 0.7;
 }
 
-.email-field input {
+.email-field input,
+.email-field select {
   flex: 1;
   border: none;
   background: transparent;
@@ -372,12 +373,70 @@
   padding: 4px 0;
 }
 
-.email-field input:focus {
+.email-field input:focus,
+.email-field select:focus {
   outline: none;
 }
 
-.email-field input[readOnly] {
-  opacity: 0.7;
+/* Inputs hide their outline, so highlight the whole row while typing */
+.email-field:focus-within {
+  background: var(--accent-bg);
+}
+
+.email-field select {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.email-field select option {
+  background: var(--panel-bg);
+  color: var(--text);
+}
+
+.email-field:has([aria-invalid="true"]),
+.email-body[aria-invalid="true"] {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.email-error {
+  margin: 0;
+  padding: 10px 16px;
+  border-top: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.email-sent {
+  align-items: center;
+  gap: 12px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.email-sent p {
+  margin: 0;
+}
+
+.email-sent-title {
+  color: var(--accent);
+  font-family: var(--heading);
+  font-weight: 700;
+}
+
+.email-compose-footer button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Hidden visually but still read by screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .email-body {
