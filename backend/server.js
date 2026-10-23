@@ -15,6 +15,7 @@ const adminRoutes = require('./src/routes/admin');
 const projectRouter = require('./src/routes/projectRoutes');
 const skillRouter = require('./src/routes/skillRoutes');
 const entryRouter = require('./src/routes/entryRoutes')
+const contactRouter = require('./src/routes/contactRoute')
 
 
 // DATABASE CONNECTION
@@ -46,6 +47,7 @@ app.use('/projects', projectRouter)
 app.use('/skills', skillRouter)
 app.use('/entries', entryRouter)
 app.use('/mgmt', adminRoutes)
+app.use('/contact', contactRouter)
 
 
 // Routes - INDUCES [Indexes,New, Delete, Update, Create,Edit,Show]
