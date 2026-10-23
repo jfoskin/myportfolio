@@ -5,12 +5,23 @@ const { Resend } = require('resend')
 const resend = new Resend(process.env.RESEND_API_KEY)
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// Optional fields that apply to each reason; anything else sent is ignored.
+// Keep in sync with frontend/src/components/ContactContent.jsx
+const optionalFieldsByReason = {
+    job: ['company', 'link'],
+    freelance: ['company', 'timeline', 'link'],
+    collab: ['company', 'link'],
+    hello: [],
+}
+
+const isText = (value) => typeof value === 'string' && value.trim() !== ''
+
 function validateContact({ name, email, reason, message }) {
     const fields = []
-    if (!name?.trim() || name.length > 100) fields.push('name')
-    if (!email?.trim() || !EMAIL_PATTERN.test(email)) fields.push('email')
+    if (!isText(name) || name.length > 100) fields.push('name')
+    if (!isText(email) || !EMAIL_PATTERN.test(email)) fields.push('email')
     if (!Object.hasOwn(optionalFieldsByReason, reason)) fields.push('reason')
-    if (!message?.trim() || message.length > 5000) fields.push('message')
+    if (!isText(message) || message.length > 5000) fields.push('message')
     return fields
 }
 
