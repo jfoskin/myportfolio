@@ -1,36 +1,48 @@
 const express = require('express')
 const contactRouter = express.Router()
-const Contact = require('../models/ContactModel')
+const { Resend } = require('resend')
 
-// Optional fields that apply to each reason; anything else sent is ignored.
-// Keep in sync with frontend/src/components/ContactContent.jsx
-const optionalFieldsByReason = {
-    job: ['company', 'link'],
-    freelance: ['company', 'timeline', 'link'],
-    collab: ['company', 'link'],
-    hello: [],
+const resend = new Resend(process.env.RESEND_API_KEY)
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function validateContact({ name, email, reason, message }) {
+    const fields = []
+    if (!name?.trim() || name.length > 100) fields.push('name')
+    if (!email?.trim() || !EMAIL_PATTERN.test(email)) fields.push('email')
+    if (!Object.hasOwn(optionalFieldsByReason, reason)) fields.push('reason')
+    if (!message?.trim() || message.length > 5000) fields.push('message')
+    return fields
 }
 
 contactRouter.post('/', async (req, res, next) => {
     try {
         const { name, email, reason, message } = req.body
-        const contact = { name, email, reason, message }
 
-        const optionalFields = Object.hasOwn(optionalFieldsByReason, reason) ? optionalFieldsByReason[reason] : []
-        for (const field of optionalFields) {
-            if (req.body[field]) contact[field] = req.body[field]
-        }
-
-        await Contact.create(contact)
-        res.status(201).json({ message: 'Message sent' })
-    } catch (error) {
         // Bad input from the form: tell the visitor which fields to fix
-        if (error.name === 'ValidationError') {
+        const invalidFields = validateContact({ name, email, reason, message })
+        if (invalidFields.length) {
             return res.status(400).json({
                 error: 'Please check the highlighted fields and try again',
-                fields: Object.keys(error.errors),
+                fields: invalidFields,
             })
         }
+
+        const details = [`Name: ${name}`, `Email: ${email}`, `Reason: ${reason}`]
+        for (const field of optionalFieldsByReason[reason]) {
+            if (req.body[field]) details.push(`${field}: ${req.body[field]}`)
+        }
+
+        const { error } = await resend.emails.send({
+            from: 'Portfolio <onboarding@resend.dev>',
+            to: process.env.CONTACT_TO_EMAIL,
+            replyTo: email,
+            subject: `[Portfolio] New message from ${name}`,
+            text: `${details.join('\n')}\n\n${message}`,
+        })
+        if (error) throw new Error(`Resend failed: ${error.message}`)
+
+        res.status(200).json({ message: 'Message sent' })
+    } catch (error) {
         // Anything else goes to the centralized error handler in server.js
         next(error)
     }
