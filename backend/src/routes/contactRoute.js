@@ -44,7 +44,7 @@ contactRouter.post('/', async (req, res, next) => {
         }
 
         const { error } = await resend.emails.send({
-            from: 'Portfolio <onboarding@resend.dev>',
+            from: 'Portfolio Contact Form',
             to: process.env.CONTACT_TO_EMAIL,
             replyTo: email,
             subject: `[Portfolio] New message from ${name}`,
