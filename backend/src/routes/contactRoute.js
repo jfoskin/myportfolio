@@ -43,9 +43,16 @@ contactRouter.post('/', async (req, res, next) => {
             if (req.body[field]) details.push(`${field}: ${req.body[field]}`)
         }
 
+        // Both addresses live in env vars so they never appear in the public repo.
+        // CONTACT_FROM_EMAIL must be "Display Name <address@verified-domain>"
+        const { CONTACT_FROM_EMAIL, CONTACT_TO_EMAIL } = process.env
+        if (!CONTACT_FROM_EMAIL || !CONTACT_TO_EMAIL) {
+            throw new Error('CONTACT_FROM_EMAIL and CONTACT_TO_EMAIL must both be set')
+        }
+
         const { error } = await resend.emails.send({
-            from: 'Portfolio Contact Form',
-            to: process.env.CONTACT_TO_EMAIL,
+            from: CONTACT_FROM_EMAIL,
+            to: CONTACT_TO_EMAIL,
             replyTo: email,
             subject: `[Portfolio] New message from ${name}`,
             text: `${details.join('\n')}\n\n${message}`,
