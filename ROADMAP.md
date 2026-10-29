@@ -15,10 +15,10 @@ Group skills under headings a recruiter can scan quickly: **Frontend**, **Backen
 
 The contact form (`frontend/src/components/ContactContent.jsx`) is only a layout right now: it has no submit handler and nothing is sent.
 
-- [ ] Add a backend route, e.g. `POST /contact`, that sends the message through an email service (Resend, SendGrid, or Nodemailer with a Gmail app password)
-- [ ] Keep the destination address and API key in `backend/.env` only, never in frontend code, so the private address is never exposed to visitors
-- [ ] Use the visitor's address as `reply-to`, so replies go straight to them
-- [ ] Validate input on the backend (required fields, email format, max length)
+- [ x ] Add a backend route, e.g. `POST /contact`, that sends the message through an email service (Resend, SendGrid, or Nodemailer with a Gmail app password)
+- [ x ] Keep the destination address and API key in `backend/.env` only, never in frontend code, so the private address is never exposed to visitors
+- [ x ] Use the visitor's address as `reply-to`, so replies go straight to them
+- [ x ] Validate input on the backend (required fields, email format, max length)
 - [ ] Add spam protection: a hidden honeypot field and rate limiting per IP
 - [ ] Frontend: controlled inputs, a sending state, and success/error messages (reuse the style of `FetchStatus`)
 
